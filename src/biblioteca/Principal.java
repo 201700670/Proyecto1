@@ -41,6 +41,7 @@ public class Principal extends JFrame{
     
     public Principal(){
             setLayout(null);
+            setLocationRelativeTo(null);
         Dimension dim = new Dimension(200, 50);
         setTitle("IPC PROYECTO 1");
         getContentPane().setBackground(Color.LIGHT_GRAY);

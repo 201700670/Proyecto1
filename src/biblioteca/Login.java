@@ -41,7 +41,7 @@ public class Login extends JFrame{
     private JLabel pnlicon;
     public Login(){
         setLayout(null);
-        
+        setLocationRelativeTo(null);
         setTitle("LOGIN");
         Dimension dim = new Dimension(200, 50);
         Dimension dim2 = new Dimension(400, 50);
@@ -106,26 +106,48 @@ public class Login extends JFrame{
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            String tener;
+            String arrayusuario[]=new String[10];
+            String arraypsswd[]=new String[10];
+            String usuarios;
+            String pasword;
+            boolean prueba;
+            boolean prueba2;
+            boolean prueba3;
             if(ae.getSource()==registrarse){
                     Usuario obj1=new Usuario();
                     obj1.setVisible(true);
                 }
                 if(ae.getSource()==logOut){
-                    System.exit(0);
+                    _user.setText(null);
+                    _psswd.setText(null);
                 }
             if(ae.getSource()==logIn){
-                for(int i=0;i<1;i++){
-                    if(((_user.getText()).equals(Usuario.Lista7[i]))&&((_psswd.getText())).equals(Usuario.Lista5[i])){
-                        System.out.println("hola mundo");
+                for(int j=0;j<arrayusuario.length;j++){
+                    usuarios=_user.getText();
+                    arrayusuario[j]=usuarios;
+                }
+                for(int k=0;k<arraypsswd.length;k++){
+                    pasword=_psswd.getText();
+                    arraypsswd[k]=pasword;
+                }
+                for(int i=0;i<10;i++){
+                    if(((arrayusuario[i]).equals(Usuario.Lista7[i]))&&((arraypsswd[i])).equals(Usuario.Lista5[i])){
+                        prueba=true;
                     }
                     else if(!((_user.getText()).equals(Usuario.Lista7[i]))&&!((_psswd.getText()).equals(Usuario.Lista5[i]))){
-                        JOptionPane.showMessageDialog(Login.this,"EL USUARIO NO EXISTE, PONERSE EN CONTACTO\n"
-                                + "CON EL ADMINISTRADOR PARA SOLICITAR UN REGISTRO","ERROR",JOptionPane.WARNING_MESSAGE);
+                        prueba2=true;
                     }else if((!(_user.getText()).equals(Usuario.Lista7[i]))||(!(_psswd.getText()).equals(Usuario.Lista5[i]))){
-                        JOptionPane.showMessageDialog(Login.this,"EL USUARIO Y CONTRASEÑA NO COINCIDEN\n"
-                                + "FAVOR REVISE SUS DATOS","ERROR",JOptionPane.WARNING_MESSAGE);
+                        prueba3=true;
                         }
+                }
+                if(prueba=true){
+                    System.out.println("holamundo");//falta
+                }else if(prueba2=true){
+                    JOptionPane.showMessageDialog(Login.this,"EL USUARIO NO EXISTE, PONERSE EN CONTACTO\n"
+                                + "CON EL ADMINISTRADOR PARA SOLICITAR UN REGISTRO","ERROR",JOptionPane.WARNING_MESSAGE);
+                }else if(prueba3=true){
+                    JOptionPane.showMessageDialog(Login.this,"EL USUARIO Y CONTRASEÑA NO COINCIDEN\n"
+                                + "FAVOR REVISE SUS DATOS","ERROR",JOptionPane.WARNING_MESSAGE);
                 }
             }
                 

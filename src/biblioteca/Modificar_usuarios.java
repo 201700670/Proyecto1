@@ -41,6 +41,7 @@ public class Modificar_usuarios extends JFrame{
     
     public Modificar_usuarios(){
         setLayout(null);
+        setLocationRelativeTo(null);
         setTitle("MODIFICAR USUARIOS");
         Dimension dim = new Dimension(200, 50);
         

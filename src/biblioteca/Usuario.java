@@ -59,6 +59,7 @@ public class Usuario extends JFrame {
 
     public Usuario(){
         setLayout(null);
+        setLocationRelativeTo(null);
         setTitle("CREAR USUARIO");
         Dimension dim = new Dimension(200, 50);
         

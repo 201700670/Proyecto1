@@ -39,6 +39,7 @@ public class Eliminar_usuarios extends JFrame{
     private JButton buscar;
     public Eliminar_usuarios(){
         setLayout(null);
+        setLocationRelativeTo(null);
         setTitle("MODIFICAR USUARIOS");
         Dimension dim = new Dimension(200, 50);
         

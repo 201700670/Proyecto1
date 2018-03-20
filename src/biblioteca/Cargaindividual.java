@@ -48,6 +48,7 @@ public class Cargaindividual extends JFrame{
     private JButton cancel;
     public Cargaindividual(){
         setLayout(null);
+        setLocationRelativeTo(null);
         setTitle("MODIFICAR USUARIOS");
         Dimension dim = new Dimension(200, 50);
         
