@@ -11,9 +11,11 @@ import java.awt.FlowLayout;
 import java.awt.MenuBar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -31,9 +33,12 @@ public class Login extends JFrame{
     
     private JButton logIn;
     private JButton logOut;
+    private JButton registrarse;
+    
+    private ImageIcon imagen;
     
     private JPanel pnl;
-    private JPanel pnlicon;
+    private JLabel pnlicon;
     public Login(){
         setLayout(null);
         
@@ -66,14 +71,20 @@ public class Login extends JFrame{
         logOut.setSize(dim);
         logOut.setBounds(300, 400, 100, 30);
         
+        registrarse = new JButton("Registrarse");
+        registrarse.setSize(dim);
+        registrarse.setBounds(200, 450, 130, 30);
+        
         pnl = new JPanel();
         pnl.setSize(600, 600);
         pnl.setBounds(0,0,600,600);
         
-        pnlicon=new JPanel();
+        imagen = new ImageIcon(getClass().getResource("persona.jpg"));
+        
+        pnlicon=new JLabel();
         pnlicon.setSize(50,50);
         pnlicon.setBounds(400, 130, 150, 150);
-        pnlicon.setBackground(Color.CYAN);
+        pnlicon.setIcon(imagen);
         
         add(user);
         add(psswd);
@@ -81,30 +92,43 @@ public class Login extends JFrame{
         add(_psswd);
         add(logIn);
         add(logOut);
+        add(registrarse);
         add(pnlicon);
         
         setSize(600,600);
         setVisible(true);
+        Acciones manejo=new Acciones();
+        logIn.addActionListener(manejo);
+        logOut.addActionListener(manejo);
+        registrarse.addActionListener(manejo);
     }
-    
-   /* private JTextField caja1;//se coloca un espacio de texto llamado TextField
-    private JTextField caja2;
-    private JTextField caja3;
-    private JButton botonlogin;//son los botones a utilizar en el programa
-    private JButton botonlogout;
-    private JPanel panelog;
-    
-    public Login() {
-        setLayout(null);
-        botonlogin = new JButton(" Login ");
-        botonlogin.setBounds(25,25,200,25);
-        botonlogout=new JButton(" Logout ");
-        botonlogout.setBounds(255,25,200,25);
-        panelog= new JPanel();
-        panelog.setBounds(0,0,400,50);
-        panelog.add(botonlogin);
-        panelog.add(botonlogout);
-        add(panelog);
-    }*/
-    
+    private class Acciones implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            String tener;
+            if(ae.getSource()==registrarse){
+                    Usuario obj1=new Usuario();
+                    obj1.setVisible(true);
+                }
+                if(ae.getSource()==logOut){
+                    System.exit(0);
+                }
+            if(ae.getSource()==logIn){
+                for(int i=0;i<1;i++){
+                    if(((_user.getText()).equals(Usuario.Lista7[i]))&&((_psswd.getText())).equals(Usuario.Lista5[i])){
+                        System.out.println("hola mundo");
+                    }
+                    else if(!((_user.getText()).equals(Usuario.Lista7[i]))&&!((_psswd.getText()).equals(Usuario.Lista5[i]))){
+                        JOptionPane.showMessageDialog(Login.this,"EL USUARIO NO EXISTE, PONERSE EN CONTACTO\n"
+                                + "CON EL ADMINISTRADOR PARA SOLICITAR UN REGISTRO","ERROR",JOptionPane.WARNING_MESSAGE);
+                    }else if((!(_user.getText()).equals(Usuario.Lista7[i]))||(!(_psswd.getText()).equals(Usuario.Lista5[i]))){
+                        JOptionPane.showMessageDialog(Login.this,"EL USUARIO Y CONTRASEÑA NO COINCIDEN\n"
+                                + "FAVOR REVISE SUS DATOS","ERROR",JOptionPane.WARNING_MESSAGE);
+                        }
+                }
+            }
+                
+        }
+    }
 }

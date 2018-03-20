@@ -6,10 +6,12 @@
 package biblioteca;
 
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -26,17 +28,34 @@ public class Usuario extends JFrame {
     public JLabel contrasena;
     public JLabel confcontrasena;
     
-    public JTextField text_id;
-    public JTextField text_nombre;
-    public JTextField text_apellido;
-    public JTextField text_usuario;
-    public JTextField text_rol;
+//    public static String []arrnom=new String[10];
+//    public static String []arrap=new String[10];
+//    public static String []arrusu=new String[10];
+//    public static String []arrrol=new String[10];
+//    public static String []arrcon=new String[10];
+//    public static String []arrconf=new String[10];
+//    public static String []arrid=new String[10];
+//    public static int datusuario=1;
+//    
+    public static String[] Lista = new String[10];
+    public static String[] Lista2 = new String[10];
+    public static String[] Lista3 = new String[10];
+    public static String[] Lista4 = new String[10];
+    public static String[] Lista5 = new String[10];
+    public static String[] Lista6 = new String[10];
+    public static String[] Lista7 = new String[10];
+    
+    public static JTextField text_id;
+    public static JTextField text_nombre;
+    public static JTextField text_apellido;
+    public static JTextField text_usuario;
+    public static JTextField text_rol;
     
     public JPasswordField pass_contrasena;
     public JPasswordField pass_confcontrasena;
     
-    private JButton create;
-    private JButton cancel;
+    private JButton crear;
+    private JButton cancelar;
 
     public Usuario(){
         setLayout(null);
@@ -99,13 +118,13 @@ public class Usuario extends JFrame {
         pass_confcontrasena.setSize(dim);
         pass_confcontrasena.setBounds(190,340,340,25);
         
-        create = new JButton("Crear");
-        create.setSize(dim);
-        create.setBounds(130, 400, 100, 30);
+        crear = new JButton("Crear");
+        crear.setSize(dim);
+        crear.setBounds(130, 400, 100, 30);
         
-        cancel = new JButton("Cancelar");
-        cancel.setSize(dim);
-        cancel.setBounds(300, 400, 100, 30);
+        cancelar = new JButton("Cancelar");
+        cancelar.setSize(dim);
+        cancelar.setBounds(300, 400, 100, 30);
         
         add(id);
         add(nombre);
@@ -121,10 +140,65 @@ public class Usuario extends JFrame {
         add(text_rol);
         add(pass_contrasena);
         add(pass_confcontrasena);
-        add(create);
-        add(cancel);
+        add(crear);
+        add(cancelar);
         
         setSize(600,500);
         setVisible(true);
+        Control manejo=new Control();
+        crear.addActionListener(manejo);
+        cancelar.addActionListener(manejo);
+    }
+        private class Control implements ActionListener{
+            String obnomb,obap,obusu,obrol,obcon,obconf,obid;
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                if(ae.getSource()==crear){
+                        for(int t=0;t<1;t++){
+                            if((pass_contrasena.getText()).equals(pass_confcontrasena.getText())){
+                                for(int i=0;i<Lista.length;i++){
+                        obnomb=text_id.getText();
+                        Lista[i]=obnomb;
+                        }
+                        for(int j=0; j<Lista2.length;j++){
+                            obap=text_apellido.getText();
+                            Lista2[j]=obap;
+                        }
+                        for(int k=0; k<Lista3.length;k++){
+                            obusu=text_usuario.getText();
+                            Lista3[k]=obusu;
+                        }
+                        for(int l=0; l<Lista4.length;l++){
+                            obrol=text_rol.getText();
+                            Lista4[l]=obrol;
+                        }
+                        for(int o=0; o<Lista7.length;o++){
+                            obid=text_id.getText();
+                            Lista7[o]=obid;
+                        }
+//                        
+                        for(int m=0; m<Lista5.length;m++){
+                            obcon=pass_contrasena.getText();
+                            Lista5[m]=obcon;
+                        }
+                        for(int n=0; n<Lista6.length;n++){
+                            obconf=pass_confcontrasena.getText();
+                            Lista6[n]=obconf;
+                        }
+                         dispose();
+                            }else{
+                               JOptionPane.showMessageDialog(Usuario.this,"CONTRASEÑAS NO COINCIDEN","ERROR",JOptionPane.WARNING_MESSAGE); 
+                            }
+                                
+                        }
+                        
+                   
+                }
+                if(ae.getSource()==cancelar){
+                    System.exit(0);
+                }
+                
+            }
+        }
 }
-}
+
