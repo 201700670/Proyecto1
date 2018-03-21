@@ -28,15 +28,6 @@ public class Usuario extends JFrame {
     public JLabel contrasena;
     public JLabel confcontrasena;
     
-//    public static String []arrnom=new String[10];
-//    public static String []arrap=new String[10];
-//    public static String []arrusu=new String[10];
-//    public static String []arrrol=new String[10];
-//    public static String []arrcon=new String[10];
-//    public static String []arrconf=new String[10];
-//    public static String []arrid=new String[10];
-//    public static int datusuario=1;
-//    
     public static String[] Lista = new String[10];
     public static String[] Lista2 = new String[10];
     public static String[] Lista3 = new String[10];
@@ -156,9 +147,10 @@ public class Usuario extends JFrame {
             public void actionPerformed(ActionEvent ae) {
                 if(ae.getSource()==crear){
                         for(int t=0;t<1;t++){
+                            
                             if((pass_contrasena.getText()).equals(pass_confcontrasena.getText())){
                                 for(int i=0;i<Lista.length;i++){
-                        obnomb=text_id.getText();
+                        obnomb=text_nombre.getText();
                         Lista[i]=obnomb;
                         }
                         for(int j=0; j<Lista2.length;j++){
@@ -177,7 +169,6 @@ public class Usuario extends JFrame {
                             obid=text_id.getText();
                             Lista7[o]=obid;
                         }
-//                        
                         for(int m=0; m<Lista5.length;m++){
                             obcon=pass_contrasena.getText();
                             Lista5[m]=obcon;
@@ -186,14 +177,15 @@ public class Usuario extends JFrame {
                             obconf=pass_confcontrasena.getText();
                             Lista6[n]=obconf;
                         }
+                        if("".equals(obnomb)||"".equals(obap)||"".equals(obid)||"".equals(obusu)||"".equals(obrol)||"".equals(obconf)||"".equals(obconf)){
+                                JOptionPane.showMessageDialog(null, "CASILLAS EN BLANCO POR FAVOR RELLENAR", "ERROR",JOptionPane.INFORMATION_MESSAGE);
+                            }
                          dispose();
                             }else{
                                JOptionPane.showMessageDialog(Usuario.this,"CONTRASEÑAS NO COINCIDEN","ERROR",JOptionPane.WARNING_MESSAGE); 
                             }
                                 
                         }
-                        
-                   
                 }
                 if(ae.getSource()==cancelar){
                     System.exit(0);

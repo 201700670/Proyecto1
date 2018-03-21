@@ -41,7 +41,7 @@ public class Administrador extends JFrame {
     private JPanel pnl;
     public Administrador(){
         setLayout(null);
-        setLocationRelativeTo(null);
+//        setLocationRelativeTo(null);
         setTitle("ADMINISTRADOR");
         Dimension dim = new Dimension(200, 50);
         Dimension dim2 = new Dimension(400, 50);
@@ -135,6 +135,18 @@ public class Administrador extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
+            if(ae.getSource()==crearusuario){
+                Usuario obj= new Usuario();
+                obj.setVisible(true);
+            }
+            if(ae.getSource()==modificarusuario){
+                Modificar_usuarios obj=new Modificar_usuarios();
+                obj.setVisible(true);
+            }
+            if(ae.getSource()==eliminarusuario){
+                Eliminar_usuarios obj=new Eliminar_usuarios();
+                obj.setVisible(true);
+            }
         }
     }
 }
