@@ -161,66 +161,50 @@ public class Modificar_usuarios extends JFrame{
 //                obconf=pass_confcontrasena.getText();
                 if(ae.getSource()==buscar){
                     usuarios=text_id.getText();
-                    for(int i=0;i<Administrador.personas1;i++){
-                        if(!Administrador.usuarios1[i].id.equals((usuarios))){
-                            contador=contador+2;
-                            System.out.println("hola");
+                    for (int i=1;i<Administrador.personas1;i++){
+                        if(usuarios.equals(Administrador.usuarios1[i].id)){
+                            contador=contador+i;
                         }
-//                        else{
+//                        if((usuarios.equals(Administrador.usuarios1[1].id))) {
+//                            JOptionPane.showMessageDialog(null,"EL USUARIO NO EXISTE","ERROR",JOptionPane.WARNING_MESSAGE);
+//                        } else {
 //                            probar=true;
 //                        }
-//                        
                     }
-                        System.out.println(contador);
-//                            obnomb=Administrador.usuarios1[2].nombre;
-//                            text_nombre.setText(obnomb);
-//                            obap=Administrador.usuarios1[contador].apellido;
-//                            text_apellido.setText(obap);
-//                            obusu=Administrador.usuarios1[contador].usuario;
-//                            text_usuario.setText(obusu);
-//                            obrol=Administrador.usuarios1[contador].rol;
-//                            text_rol.setText(obrol);
-//                            obcon=Administrador.usuarios1[contador].contrasena;
-//                            pass_contrasena.setText(obcon);
-//                            obconf=Administrador.usuarios1[contador].contrasena;
-//                            pass_confcontrasena.setText(obconf);
-////                            obid=Usuario.Lista7[contador];
-////                            text_id.setText(obid);
-                        
-                    
+                    System.out.println(contador);
+                            obnomb=Administrador.usuarios1[contador].nombre;
+                            text_nombre.setText(obnomb);
+                            obap=Administrador.usuarios1[contador].apellido;
+                            text_apellido.setText(obap);
+                            obusu=Administrador.usuarios1[contador].usuario;
+                            text_usuario.setText(obusu);
+                            obrol=Administrador.usuarios1[contador].rol;
+                            text_rol.setText(obrol);
+                            obcon=Administrador.usuarios1[contador].contrasena;
+                            pass_contrasena.setText(obcon);
+                            obconf=Administrador.usuarios1[contador].contrasena;
+                            pass_confcontrasena.setText(obconf);
 //                    if(probar=true){
 //                        JOptionPane.showMessageDialog(null,"EL USUARIO NO EXISTE","ERROR",JOptionPane.WARNING_MESSAGE);
 //                    }
                 }
             if(ae.getSource()==modificar){
-                for(int i=1;i<Administrador.usuarios1.length;i++){
+                
                     obnomb=text_nombre.getText();
-                    Administrador.usuarios1[i].nombre=obnomb;
-                }
-                for(int j=1; j<Administrador.usuarios1.length;j++){
+                    Administrador.usuarios1[contador].nombre=obnomb;
                     obap=text_apellido.getText();
-                     Administrador.usuarios1[j].apellido=obap;
-                }
-                for(int k=1; k<Administrador.usuarios1.length;k++){
+                     Administrador.usuarios1[contador].apellido=obap;
                     obusu=text_usuario.getText();
-                    Administrador.usuarios1[k].usuario=obusu;
-                }
-                for(int l=1; l<Administrador.usuarios1.length;l++){
+                    Administrador.usuarios1[contador].usuario=obusu;
                     obrol=text_rol.getText();
-                    Administrador.usuarios1[l].rol=obrol;
-                }
-                for(int o=1; o<Administrador.usuarios1.length;o++){
+                    Administrador.usuarios1[contador].rol=obrol;
                     obid=text_id.getText();
-                    Administrador.usuarios1[o].id=obid;
-                }
-                for(int m=1; m<Administrador.usuarios1.length;m++){
+                    Administrador.usuarios1[contador].id=obid;
                     obcon=pass_contrasena.getText();
-                    Administrador.usuarios1[m].contrasena=obcon;
-                }
-                for(int n=1; n<Administrador.usuarios1.length;n++){
+                    Administrador.usuarios1[contador].contrasena=obcon;
                     obconf=pass_confcontrasena.getText();
-                    Administrador.usuarios1[n].contrasena=obconf;
-                }
+                    Administrador.usuarios1[contador].contrasena=obconf;
+                
                  if((pass_contrasena.getText()).equals(pass_confcontrasena.getText())){
                 }else{
                     JOptionPane.showMessageDialog(Modificar_usuarios.this,"CONTRASEÑAS NO COINCIDEN","ERROR",JOptionPane.WARNING_MESSAGE); 
@@ -230,7 +214,8 @@ public class Modificar_usuarios extends JFrame{
             if(ae.getSource()==cancel){
                 dispose();
             }
-        }
+        
     }
     
+}
 }

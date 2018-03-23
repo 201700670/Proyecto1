@@ -155,7 +155,7 @@ public class Eliminar_usuarios extends JFrame{
             String arrayusuario[]=new String[10];
             String usuarios;
             boolean probar;
-            boolean prueba2;
+            String prueba2;
             
                 obnomb=text_nombre.getText();
                 obap=text_apellido.getText();
@@ -165,68 +165,65 @@ public class Eliminar_usuarios extends JFrame{
                 obconf=pass_confcontrasena.getText();
                 if(ae.getSource()==buscar){
                     usuarios=text_id.getText();
-                    for(int i=1;i<Usuario.persona;i++){
-                        if(((usuarios).equals(Usuario.Lista7[i]))){
+                    prueba2="";
+//                    if (((usuarios).equals(Administrador.usuarios1[Integer.parseInt(prueba2)].id))){
+//                            probar=true;
+//                        }
+                    for(int i=1;i<Administrador.personas1;i++){
+                        if(((usuarios).equals(Administrador.usuarios1[i].id))){
                             contador=contador+i;
                         }
-                        else{
-                            probar=true;
-                        }
-//                        
                     }
                         System.out.println(contador);
-                            obnomb=Usuario.Lista[contador];
+                        
+                            obnomb=Administrador.usuarios1[contador].nombre;
                             text_nombre.setText(obnomb);
-                            obap=Usuario.Lista2[contador];
+                            obap=Administrador.usuarios1[contador].apellido;
                             text_apellido.setText(obap);
-                            obusu=Usuario.Lista3[contador];
+                            obusu=Administrador.usuarios1[contador].usuario;
                             text_usuario.setText(obusu);
-                            obrol=Usuario.Lista4[contador];
+                            obrol=Administrador.usuarios1[contador].rol;
                             text_rol.setText(obrol);
-                            obcon=Usuario.Lista5[contador];
+                            obcon=Administrador.usuarios1[contador].contrasena;
                             pass_contrasena.setText(obcon);
-                            obconf=Usuario.Lista6[contador];
+                            obconf=Administrador.usuarios1[contador].contrasena;
                             pass_confcontrasena.setText(obconf);
+                            
                             if(probar=true){
                         JOptionPane.showMessageDialog(null,"EL USUARIO NO EXISTE","ERROR",JOptionPane.WARNING_MESSAGE);
                     }
                 }
             if(ae.getSource()==eliminar){
-                for(int i=0;i<Usuario.Lista.length;i++){
+                
                     text_nombre.setText(null);
                     obnomb=text_nombre.getText();
-                    Usuario.Lista[i]=obnomb;
-                }
-                for(int j=0; j<Usuario.Lista2.length;j++){
+                    Administrador.usuarios1[contador].nombre=obnomb;
+               
+                
                     text_apellido.setText(null);
                     obap=text_apellido.getText();
-                     Usuario.Lista2[j]=obap;
-                }
-                for(int k=0; k<Usuario.Lista3.length;k++){
+                    Administrador.usuarios1[contador].apellido=obap;
+                
                     text_usuario.setText(null);
                     obusu=text_usuario.getText();
-                    Usuario.Lista3[k]=obusu;
-                }
-                for(int l=0; l<Usuario.Lista4.length;l++){
+                    Administrador.usuarios1[contador].usuario=obusu;
+               
                     text_rol.setText(null);
                     obrol=text_rol.getText();
-                    Usuario.Lista4[l]=obrol;
-                }
-                for(int o=0; o<Usuario.Lista7.length;o++){
+                    Administrador.usuarios1[contador].rol=obrol;
+               
                     text_id.setText(null);
                     obid=text_id.getText();
-                    Usuario.Lista7[o]=obid;
-                }
-                for(int m=0; m<Usuario.Lista5.length;m++){
+                    Administrador.usuarios1[contador].id=obid;
+                
                     pass_contrasena.setText(null);
                     obcon=pass_contrasena.getText();
-                    Usuario.Lista5[m]=obcon;
-                }
-                for(int n=0; n<Usuario.Lista6.length;n++){
+                    Administrador.usuarios1[contador].contrasena=obcon;
+               
                     pass_confcontrasena.setText(null);
                     obconf=pass_confcontrasena.getText();
-                    Usuario.Lista6[n]=obconf;
-                }
+                    Administrador.usuarios1[contador].contrasena=obconf;
+                
                  if((pass_contrasena.getText()).equals(pass_confcontrasena.getText())){
                 }else{
                     JOptionPane.showMessageDialog(Eliminar_usuarios.this,"CONTRASEÑAS NO COINCIDEN","ERROR",JOptionPane.WARNING_MESSAGE); 

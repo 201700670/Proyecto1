@@ -24,7 +24,6 @@ public Mostrar_usuario(Datosusuario[]usuarios) {
             }
         }
         add(tablasusuario);
-        setEnabled(false);
         setVisible(true);
         setSize(600,500);
 }
