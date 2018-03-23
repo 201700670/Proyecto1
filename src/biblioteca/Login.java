@@ -95,7 +95,7 @@ public class Login extends JFrame{
         add(registrarse);
         add(pnlicon);
         
-        setSize(600,600);
+        setSize(600,550);
         setVisible(true);
         Acciones manejo=new Acciones();
         logIn.addActionListener(manejo);
@@ -108,7 +108,7 @@ public class Login extends JFrame{
         public void actionPerformed(ActionEvent ae) {
             String arrayusuario[]=new String[10];
             String arraypsswd[]=new String[10];
-            String usuarios;
+            String usuarios12;
             String pasword;
             boolean prueba;
             boolean prueba2;
@@ -121,33 +121,40 @@ public class Login extends JFrame{
                     _user.setText(null);
                     _psswd.setText(null);
                 }
-            if(ae.getSource()==logIn){
-                for(int j=0;j<arrayusuario.length;j++){
-                    usuarios=_user.getText();
-                    arrayusuario[j]=usuarios;
-                }
-                for(int k=0;k<arraypsswd.length;k++){
-                    pasword=_psswd.getText();
-                    arraypsswd[k]=pasword;
-                }
-                for(int i=0;i<10;i++){
-                    if(((arrayusuario[i]).equals(Usuario.Lista7[i]))&&((arraypsswd[i])).equals(Usuario.Lista5[i])){
-                        prueba=true;
+           if(ae.getSource()==logIn){
+               usuarios12=_user.getText();
+               pasword=_psswd.getText();
+                              System.out.println(usuarios12);
+                              System.out.println(pasword);
+                               Administrador.usuarios1[0]=new Datosusuario("admin","admin", "admin", "admin","admin", "admin");
+               if(usuarios12.equals(Administrador.usuarios1[0].id)&& pasword.equals(Administrador.usuarios1[0].contrasena)){
+                   Administrador obj= new Administrador();
+                   obj.setVisible(true);
+                   dispose();
+               }
+               
+               
+                for(int i=0;i<Administrador.personas1;i++){
+                    
+                    while((usuarios12.equals(Administrador.usuarios1[i].id)) && (pasword.equals(Administrador.usuarios1[i].contrasena))){
+                        JOptionPane.showMessageDialog(Login.this,"BIENVENIDO","INFORMACION",JOptionPane.INFORMATION_MESSAGE);
+                        
+                        return;
                     }
-                    else if(!((_user.getText()).equals(Usuario.Lista7[i]))&&!((_psswd.getText()).equals(Usuario.Lista5[i]))){
-                        prueba2=true;
-                    }else if((!(_user.getText()).equals(Usuario.Lista7[i]))||(!(_psswd.getText()).equals(Usuario.Lista5[i]))){
-                        prueba3=true;
-                        }
                 }
-                if(prueba=true){
-                    System.out.println("holamundo");//falta
-                }else if(prueba2=true){
-                    JOptionPane.showMessageDialog(Login.this,"EL USUARIO NO EXISTE, PONERSE EN CONTACTO\n"
-                                + "CON EL ADMINISTRADOR PARA SOLICITAR UN REGISTRO","ERROR",JOptionPane.WARNING_MESSAGE);
-                }else if(prueba3=true){
-                    JOptionPane.showMessageDialog(Login.this,"EL USUARIO Y CONTRASEÑA NO COINCIDEN\n"
+               for(int i=1;i<Administrador.personas1;i++){
+                    while((!usuarios12.equals(Administrador.usuarios1[i].id)) || (!pasword.equals(Administrador.usuarios1[i].contrasena))){
+                        JOptionPane.showMessageDialog(Login.this,"EL USUARIO Y CONTRASEÑA NO COINCIDEN\n"
                                 + "FAVOR REVISE SUS DATOS","ERROR",JOptionPane.WARNING_MESSAGE);
+                        return;
+                    }
+                }
+               for(int i=0;i<Administrador.personas1;i++){
+                    while((!usuarios12.equals(Administrador.usuarios1[i].id)) && (!pasword.equals(Administrador.usuarios1[i].contrasena))){
+                        JOptionPane.showMessageDialog(Login.this,"EL USUARIO NO EXISTE, PONERSE EN CONTACTO\n"
+                                + "CON EL ADMINISTRADOR PARA SOLICITAR UN REGISTRO","ERROR",JOptionPane.WARNING_MESSAGE);
+                        return;
+                    }
                 }
             }
                 

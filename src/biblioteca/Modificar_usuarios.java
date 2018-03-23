@@ -144,86 +144,82 @@ public class Modificar_usuarios extends JFrame{
     }
 
     private class Modificar implements ActionListener {
-        String obnomb,obap,obusu,obrol,obcon,obconf,obid;
+        private String obnomb,obap,obusu,obrol,obcon,obconf,obid;
+        private int contador;
         @Override
         public void actionPerformed(ActionEvent ae) {
             String arrayusuario[]=new String[10];
             String usuarios;
             boolean probar;
             boolean prueba2;
-            int contador=0;
-                obnomb=text_nombre.getText();
-                obap=text_apellido.getText();
-                obusu=text_usuario.getText();
-                obrol=text_rol.getText();
-                obcon=pass_contrasena.getText();
-                obconf=pass_confcontrasena.getText();
+            
+//                obnomb=text_nombre.getText();
+//                obap=text_apellido.getText();
+//                obusu=text_usuario.getText();
+//                obrol=text_rol.getText();
+//                obcon=pass_contrasena.getText();
+//                obconf=pass_confcontrasena.getText();
                 if(ae.getSource()==buscar){
-                    for(int j=0;j<arrayusuario.length;j++){
                     usuarios=text_id.getText();
-                    arrayusuario[j]=usuarios;
-                    }
-                    for(int i=0;i<arrayusuario.length;i++){
-                        for(int j=0;j<Usuario.Lista7.length;j++){
-                        if(((arrayusuario[i]).equals(Usuario.Lista7[j]))){
-                            contador=j;
-                            probar=true;
+                    for(int i=0;i<Administrador.personas1;i++){
+                        if(!Administrador.usuarios1[i].id.equals((usuarios))){
+                            contador=contador+2;
+                            System.out.println("hola");
                         }
-                        }
-//                        else if((!(Usuario.Lista7[i].equals(arrayusuaro[i])))){
-//                        prueba2=true;
-//                    }
+//                        else{
+//                            probar=true;
+//                        }
+//                        
                     }
-                    if(probar=true){ 
-                        for(int h=0;h<Usuario.Lista.length;h++){
-                            obnomb=Usuario.Lista[h];
-                            text_nombre.setText(obnomb);
-                        }
-                            obap=Usuario.Lista2[contador];
-                            text_apellido.setText(obap);
-                            obusu=Usuario.Lista3[contador];
-                            text_usuario.setText(obusu);
-                            obrol=Usuario.Lista4[contador];
-                            text_rol.setText(obrol);
-                            obcon=Usuario.Lista5[contador];
-                            pass_contrasena.setText(obcon);
-                            obconf=Usuario.Lista6[contador];
-                            pass_confcontrasena.setText(obconf);
-//                            obid=Usuario.Lista7[contador];
-//                            text_id.setText(obid);
-                    }
-//                    else if(prueba2=true){
+                        System.out.println(contador);
+//                            obnomb=Administrador.usuarios1[2].nombre;
+//                            text_nombre.setText(obnomb);
+//                            obap=Administrador.usuarios1[contador].apellido;
+//                            text_apellido.setText(obap);
+//                            obusu=Administrador.usuarios1[contador].usuario;
+//                            text_usuario.setText(obusu);
+//                            obrol=Administrador.usuarios1[contador].rol;
+//                            text_rol.setText(obrol);
+//                            obcon=Administrador.usuarios1[contador].contrasena;
+//                            pass_contrasena.setText(obcon);
+//                            obconf=Administrador.usuarios1[contador].contrasena;
+//                            pass_confcontrasena.setText(obconf);
+////                            obid=Usuario.Lista7[contador];
+////                            text_id.setText(obid);
+                        
+                    
+//                    if(probar=true){
 //                        JOptionPane.showMessageDialog(null,"EL USUARIO NO EXISTE","ERROR",JOptionPane.WARNING_MESSAGE);
 //                    }
                 }
             if(ae.getSource()==modificar){
-                for(int i=0;i<Usuario.Lista.length;i++){
+                for(int i=1;i<Administrador.usuarios1.length;i++){
                     obnomb=text_nombre.getText();
-                    Usuario.Lista[i]=obnomb;
+                    Administrador.usuarios1[i].nombre=obnomb;
                 }
-                for(int j=0; j<Usuario.Lista2.length;j++){
+                for(int j=1; j<Administrador.usuarios1.length;j++){
                     obap=text_apellido.getText();
-                     Usuario.Lista2[j]=obap;
+                     Administrador.usuarios1[j].apellido=obap;
                 }
-                for(int k=0; k<Usuario.Lista3.length;k++){
+                for(int k=1; k<Administrador.usuarios1.length;k++){
                     obusu=text_usuario.getText();
-                    Usuario.Lista3[k]=obusu;
+                    Administrador.usuarios1[k].usuario=obusu;
                 }
-                for(int l=0; l<Usuario.Lista4.length;l++){
+                for(int l=1; l<Administrador.usuarios1.length;l++){
                     obrol=text_rol.getText();
-                    Usuario.Lista4[l]=obrol;
+                    Administrador.usuarios1[l].rol=obrol;
                 }
-                for(int o=0; o<Usuario.Lista7.length;o++){
+                for(int o=1; o<Administrador.usuarios1.length;o++){
                     obid=text_id.getText();
-                    Usuario.Lista7[o]=obid;
+                    Administrador.usuarios1[o].id=obid;
                 }
-                for(int m=0; m<Usuario.Lista5.length;m++){
+                for(int m=1; m<Administrador.usuarios1.length;m++){
                     obcon=pass_contrasena.getText();
-                    Usuario.Lista5[m]=obcon;
+                    Administrador.usuarios1[m].contrasena=obcon;
                 }
-                for(int n=0; n<Usuario.Lista6.length;n++){
+                for(int n=1; n<Administrador.usuarios1.length;n++){
                     obconf=pass_confcontrasena.getText();
-                    Usuario.Lista6[n]=obconf;
+                    Administrador.usuarios1[n].contrasena=obconf;
                 }
                  if((pass_contrasena.getText()).equals(pass_confcontrasena.getText())){
                 }else{

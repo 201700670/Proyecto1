@@ -5,6 +5,10 @@
  */
 package biblioteca;
 
+/**
+ *
+ * @author Andrea Palomo
+ */
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,13 +32,15 @@ public class Usuario extends JFrame {
     public JLabel contrasena;
     public JLabel confcontrasena;
     
-    public static String[] Lista = new String[10];
-    public static String[] Lista2 = new String[10];
-    public static String[] Lista3 = new String[10];
-    public static String[] Lista4 = new String[10];
-    public static String[] Lista5 = new String[10];
-    public static String[] Lista6 = new String[10];
-    public static String[] Lista7 = new String[10];
+//    public static String[] Lista = new String[10];
+//    public static String[] Lista2 = new String[10];
+//    public static String[] Lista3 = new String[10];
+//    public static String[] Lista4 = new String[10];
+//    public static String[] Lista5 = new String[10];
+//    public static String[] Lista6 = new String[10];
+//    public static String[] Lista7 = new String[10];
+   
+   
     
     public static JTextField text_id;
     public static JTextField text_nombre;
@@ -49,6 +55,7 @@ public class Usuario extends JFrame {
     private JButton cancelar;
 
     public Usuario(){
+        
         setLayout(null);
         setLocationRelativeTo(null);
         setTitle("CREAR USUARIO");
@@ -142,53 +149,54 @@ public class Usuario extends JFrame {
         cancelar.addActionListener(manejo);
     }
         private class Control implements ActionListener{
-            String obnomb,obap,obusu,obrol,obcon,obconf,obid;
             @Override
             public void actionPerformed(ActionEvent ae) {
                 if(ae.getSource()==crear){
-                        for(int t=0;t<1;t++){
+            String obnomb=text_nombre.getText();
+            String obap=text_apellido.getText();
+            String obusu=text_usuario.getText();
+            String obrol=text_rol.getText();
+            String obcon=pass_confcontrasena.getText();
+            String obconf=pass_contrasena.getText();
+            String obid=text_id.getText();
                             
                             if((pass_contrasena.getText()).equals(pass_confcontrasena.getText())){
-                                for(int i=0;i<Lista.length;i++){
-                        obnomb=text_nombre.getText();
-                        Lista[i]=obnomb;
-                        }
-                        for(int j=0; j<Lista2.length;j++){
-                            obap=text_apellido.getText();
-                            Lista2[j]=obap;
-                        }
-                        for(int k=0; k<Lista3.length;k++){
-                            obusu=text_usuario.getText();
-                            Lista3[k]=obusu;
-                        }
-                        for(int l=0; l<Lista4.length;l++){
-                            obrol=text_rol.getText();
-                            Lista4[l]=obrol;
-                        }
-                        for(int o=0; o<Lista7.length;o++){
-                            obid=text_id.getText();
-                            Lista7[o]=obid;
-                        }
-                        for(int m=0; m<Lista5.length;m++){
-                            obcon=pass_contrasena.getText();
-                            Lista5[m]=obcon;
-                        }
-                        for(int n=0; n<Lista6.length;n++){
-                            obconf=pass_confcontrasena.getText();
-                            Lista6[n]=obconf;
-                        }
-                        if("".equals(obnomb)||"".equals(obap)||"".equals(obid)||"".equals(obusu)||"".equals(obrol)||"".equals(obconf)||"".equals(obconf)){
-                                JOptionPane.showMessageDialog(null, "CASILLAS EN BLANCO POR FAVOR RELLENAR", "ERROR",JOptionPane.INFORMATION_MESSAGE);
-                            }
-                         dispose();
+                                if("".equals(obnomb)||"".equals(obap)||"".equals(obusu)||"".equals(obrol)||"".equals(obcon)||"".equals(obconf)||"".equals(obid)){
+                                    JOptionPane.showMessageDialog(Usuario.this,"DEBE LLENAR TODOS LOS CAMPOS","ERROR",JOptionPane.WARNING_MESSAGE);
+                                }
+                                Administrador.usuarios1[Administrador.personas1]=new Datosusuario(obnomb, obap, obusu, obrol, obid, obconf);
+                                
+//                               Lista7[persona]=obid;
+//                               Lista[persona]=obnomb;
+//                               Lista2[persona]=obap;
+//                               Lista3[persona]=obusu;
+//                               Lista4[persona]=obrol;
+//                               Lista5[persona]=obcon;
+//                               Lista6[persona]=obconf;
+                               for(int persona1=1;persona1<Administrador.personas1;persona1++){
+                                   while((Administrador.usuarios1[Administrador.personas1].nombre).equals((Administrador.usuarios1[persona1].nombre))){
+                                       JOptionPane.showMessageDialog(Usuario.this,"YA EXISTE UN USUARIO CON ESE ID, CAMBIARLO","ERROR",JOptionPane.WARNING_MESSAGE);
+                                       return;
+                                   }
+                               }
+                               Administrador.personas1++;
+                                System.out.println(Administrador.personas1);
+                               JOptionPane.showMessageDialog(Usuario.this,"USUARIO CREADO EXITOSAMENTE","INFORMACION",JOptionPane.INFORMATION_MESSAGE);
+                               text_nombre.setText("");
+                               text_apellido.setText("");
+                               text_id.setText("");
+                               text_usuario.setText("");
+                               text_rol.setText("");
+                               pass_confcontrasena.setText("");
+                               pass_contrasena.setText("");
                             }else{
                                JOptionPane.showMessageDialog(Usuario.this,"CONTRASEÑAS NO COINCIDEN","ERROR",JOptionPane.WARNING_MESSAGE); 
                             }
                                 
                         }
-                }
+                
                 if(ae.getSource()==cancelar){
-                    System.exit(0);
+                    dispose();
                 }
                 
             }

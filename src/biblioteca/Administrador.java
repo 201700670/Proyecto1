@@ -36,6 +36,8 @@ public class Administrador extends JFrame {
     private JButton reporteusuario;
     private JButton reportelibro;
     
+    public static Datosusuario []usuarios1=new Datosusuario[10];
+    public static int personas1=1;
     private ImageIcon imagen;
     
     private JPanel pnl;
@@ -145,6 +147,10 @@ public class Administrador extends JFrame {
             }
             if(ae.getSource()==eliminarusuario){
                 Eliminar_usuarios obj=new Eliminar_usuarios();
+                obj.setVisible(true);
+            }
+            if(ae.getSource()==mostrarusuario){
+                Mostrar_usuario obj= new Mostrar_usuario(usuarios1);
                 obj.setVisible(true);
             }
         }

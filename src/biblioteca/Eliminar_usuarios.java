@@ -148,14 +148,15 @@ public class Eliminar_usuarios extends JFrame{
     }
 
     private class Acciones implements ActionListener{
-        String obnomb,obap,obusu,obrol,obcon,obconf,obid;
+        private String obnomb,obap,obusu,obrol,obcon,obconf,obid;
+        private int contador=0;
         @Override
         public void actionPerformed(ActionEvent ae) {
             String arrayusuario[]=new String[10];
             String usuarios;
             boolean probar;
             boolean prueba2;
-            int contador=0;
+            
                 obnomb=text_nombre.getText();
                 obap=text_apellido.getText();
                 obusu=text_usuario.getText();
@@ -163,20 +164,17 @@ public class Eliminar_usuarios extends JFrame{
                 obcon=pass_contrasena.getText();
                 obconf=pass_confcontrasena.getText();
                 if(ae.getSource()==buscar){
-                    for(int j=0;j<arrayusuario.length;j++){
                     usuarios=text_id.getText();
-                    arrayusuario[j]=usuarios;
-                    }
-                    for(int i=0;i<10;i++){
-                        if(((arrayusuario[i]).equals(Usuario.Lista7[i]))){
-                            contador=i;
+                    for(int i=1;i<Usuario.persona;i++){
+                        if(((usuarios).equals(Usuario.Lista7[i]))){
+                            contador=contador+i;
+                        }
+                        else{
                             probar=true;
                         }
-//                        else if((!(Usuario.Lista7[i].equals(arrayusuario[i])))){
-//                        prueba2=true;
-//                    }
+//                        
                     }
-                    if(probar=true){
+                        System.out.println(contador);
                             obnomb=Usuario.Lista[contador];
                             text_nombre.setText(obnomb);
                             obap=Usuario.Lista2[contador];
@@ -189,12 +187,9 @@ public class Eliminar_usuarios extends JFrame{
                             pass_contrasena.setText(obcon);
                             obconf=Usuario.Lista6[contador];
                             pass_confcontrasena.setText(obconf);
-                            obid=Usuario.Lista7[contador];
-                            text_id.setText(obid);
+                            if(probar=true){
+                        JOptionPane.showMessageDialog(null,"EL USUARIO NO EXISTE","ERROR",JOptionPane.WARNING_MESSAGE);
                     }
-//                    else if(prueba2=true){
-//                        JOptionPane.showMessageDialog(null,"EL USUARIO NO EXISTE","ERROR",JOptionPane.WARNING_MESSAGE);
-//                    }
                 }
             if(ae.getSource()==eliminar){
                 for(int i=0;i<Usuario.Lista.length;i++){
@@ -203,27 +198,32 @@ public class Eliminar_usuarios extends JFrame{
                     Usuario.Lista[i]=obnomb;
                 }
                 for(int j=0; j<Usuario.Lista2.length;j++){
-                    
+                    text_apellido.setText(null);
                     obap=text_apellido.getText();
                      Usuario.Lista2[j]=obap;
                 }
                 for(int k=0; k<Usuario.Lista3.length;k++){
+                    text_usuario.setText(null);
                     obusu=text_usuario.getText();
                     Usuario.Lista3[k]=obusu;
                 }
                 for(int l=0; l<Usuario.Lista4.length;l++){
+                    text_rol.setText(null);
                     obrol=text_rol.getText();
                     Usuario.Lista4[l]=obrol;
                 }
                 for(int o=0; o<Usuario.Lista7.length;o++){
+                    text_id.setText(null);
                     obid=text_id.getText();
                     Usuario.Lista7[o]=obid;
                 }
                 for(int m=0; m<Usuario.Lista5.length;m++){
+                    pass_contrasena.setText(null);
                     obcon=pass_contrasena.getText();
                     Usuario.Lista5[m]=obcon;
                 }
                 for(int n=0; n<Usuario.Lista6.length;n++){
+                    pass_confcontrasena.setText(null);
                     obconf=pass_confcontrasena.getText();
                     Usuario.Lista6[n]=obconf;
                 }

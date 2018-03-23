@@ -5,6 +5,10 @@
  */
 package biblioteca;
 
+/**
+ *
+ * @author Andrea Palomo
+ */
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
