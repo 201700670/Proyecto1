@@ -128,7 +128,7 @@ public class Login extends JFrame{
                               System.out.println(pasword);
                                Administrador.usuarios1[0]=new Datosusuario("admin","admin", "admin", "admin","admin", "admin");
                if(usuarios12.equals(Administrador.usuarios1[0].id)&& pasword.equals(Administrador.usuarios1[0].contrasena)){
-                   Administrador obj= new Administrador();
+                   AdministradorJF obj= new AdministradorJF();
                    obj.setVisible(true);
                    dispose();
                }
