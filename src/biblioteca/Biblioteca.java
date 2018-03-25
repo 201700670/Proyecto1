@@ -19,7 +19,7 @@ public class Biblioteca {
 //     Administrador frame = new Administrador();
 ////    frame.pack();
 //    frame.setVisible(true);
-        Login obj=new Login();
+        botoncargar obj=new botoncargar();
         obj.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE);//se utiliza para salir por medio del ícono "x"
         obj.setLocationRelativeTo(null);
     }

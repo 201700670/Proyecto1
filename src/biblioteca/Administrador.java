@@ -25,20 +25,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Andrea Palomo
  */
 public class Administrador extends JFrame {
-    private JLabel userio;
-    private JLabel bigrafos;
-    private JLabel reporte;
     
-    private JButton crearusuario;
-    private JButton modificarusuario;
-    private JButton eliminarusuario;
-    private JButton mostrarusuario;
-    private JButton crearbiblio;
-    private JButton modificarbiblio;
-    private JButton eliminadrbiblio;
-    private JButton mostrarbiblio;
-    private JButton reporteusuario;
-    private JButton reportelibro;
     
     public static Datosusuario []usuarios1=new Datosusuario[10];
     public static int personas1=1;
@@ -48,13 +35,10 @@ public class Administrador extends JFrame {
     DefaultTableModel usuariotabal;
     
     DefaultTableModel creaciontabla=new DefaultTableModel(datos,encabezado);
-    
-    private ImageIcon imagen;
-    
-    private JPanel pnl;
+ 
     public Administrador(){
         
-        for(int i=0;i<personas1;i++){
+        for(int i=1;i<personas1;i++){
             String[]mosusu={String.valueOf(i),Administrador.usuarios1[i].id, Administrador.usuarios1[i].nombre,Administrador.usuarios1[i].apellido, Administrador.usuarios1[i].usuario, Administrador.usuarios1[i].rol,Administrador.usuarios1[i].contrasena};
             creaciontabla.addRow(mosusu);
         }

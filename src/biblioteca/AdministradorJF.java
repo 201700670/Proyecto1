@@ -149,14 +149,12 @@ public class AdministradorJF extends JFrame{
             }
             if(ae.getSource()==mostrarusuario){
               Administrador obj= new Administrador();
-                    
                    obj.setVisible(true);
                    obj.setSize(500,400);
-//                JTable tabla=new JTable(creaciontabla);
-//                JScrollPane desplazamiento=new JScrollPane(tabla);
-//                usumos.add(desplazamiento,BorderLayout.SOUTH);
-//                Mostrar_usuario obj= new Mostrar_usuario(usuarios1);
-//                obj.setVisible(true);
+            }
+            if(ae.getSource()==crearbiblio){
+                botoncargar obj=new botoncargar();
+                obj.setVisible(true);
             }
         }
     }

@@ -6,10 +6,13 @@
 package biblioteca;
 
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -28,6 +31,8 @@ public class Cargaindividual extends JFrame{
     public JLabel area;
     public JLabel categoria;
     public JLabel isbn;
+    public JLabel ejemplares;
+    public JLabel tamaño;
     public JLabel tipo;
     
     public JTextField text_autor;
@@ -41,6 +46,8 @@ public class Cargaindividual extends JFrame{
     public JTextField text_area;
     public JTextField text_categoria;
     public JTextField text_isbn;
+    public JTextField text_ejemplares;
+    public JTextField text_tamaño;
     
     public JComboBox combo_tipo;
     
@@ -96,9 +103,17 @@ public class Cargaindividual extends JFrame{
         isbn.setSize(dim);
         isbn.setBounds(50,320,300,50);
         
+        ejemplares = new JLabel("Ejemplares: ");
+        ejemplares.setSize(dim);
+        ejemplares.setBounds(50,350,300,50);
+        
+        tamaño = new JLabel("Tamaño: ");
+        tamaño.setSize(dim);
+        tamaño.setBounds(50,380,300,50);
+        
         tipo = new JLabel("Tipo: ");
         tipo.setSize(dim);
-        tipo.setBounds(50,350,300,50);
+        tipo.setBounds(50,410,300,50);
         
         text_autor = new JTextField();
         text_autor.setSize(dim);
@@ -144,17 +159,29 @@ public class Cargaindividual extends JFrame{
         text_isbn.setSize(dim);
         text_isbn.setBounds(130,330,300,25);
         
+        text_ejemplares = new JTextField();
+        text_ejemplares.setSize(dim);
+        text_ejemplares.setBounds(130,360,300,25);
+        
+        text_tamaño = new JTextField();
+        text_tamaño.setSize(dim);
+        text_tamaño.setBounds(130,390,300,25);
+        
         combo_tipo= new JComboBox();
         combo_tipo.setSize(dim);
-        combo_tipo.setBounds(130,360,300,25);
+        combo_tipo.setBounds(130,420,300,25);
+        combo_tipo.addItem("Libro");
+        combo_tipo.addItem("Revista");
+        combo_tipo.addItem("Tesis");
+        combo_tipo.addItem("Libro digital");
         
         cargar = new JButton("Cargar");
         cargar.setSize(dim);
-        cargar.setBounds(130, 400, 100, 30);
+        cargar.setBounds(130, 460, 100, 30);
         
         cancel = new JButton("Cancelar");
         cancel.setSize(dim);
-        cancel.setBounds(300, 400, 100, 30);
+        cancel.setBounds(300, 460, 100, 30);
         
         add(autor);
         add(ano);
@@ -166,6 +193,8 @@ public class Cargaindividual extends JFrame{
         add(copias);
         add(area);
         add(categoria);
+        add(ejemplares);
+        add(tamaño);
         add(isbn);
         add(tipo);
         add(text_autor);
@@ -179,12 +208,111 @@ public class Cargaindividual extends JFrame{
         add(text_area);
         add(text_categoria);
         add(text_isbn);
+        add(text_ejemplares);
+        add(text_tamaño);
         add(combo_tipo);
         add(cargar);
         add(cancel);
         
-        setSize(500,500);
+        Reaccion manejo=new Reaccion();
+        cargar.addActionListener(manejo);
+        cancel.addActionListener(manejo);
+        combo_tipo.addActionListener(manejo);
+        
+        setSize(500,550);
         setVisible(true);
+    }
+
+    private class Reaccion implements ActionListener{
+        String oautor,otitulo,odescripcion,opalabras,otemas,oarea,ocategoria;
+        String otipo,oano,oedicion,ocopias,oisbn,obejemplares,tamaño;
+        int elemento=combo_tipo.getItemCount();
+        int l=0;
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            oautor=text_autor.getText();
+            otitulo=text_titulo.getText();
+            odescripcion=text_descripcion.getText();
+            opalabras=text_palabras.getText();
+            otemas=text_temas.getText();
+            oarea=text_area.getText();
+            ocategoria=text_categoria.getText();
+            oano=text_ano.getText();
+            ocopias=text_copias.getText();
+            oisbn=text_isbn.getText();
+            obejemplares=text_ejemplares.getText();
+            tamaño=text_tamaño.getText();
+            oedicion=text_edicion.getText();
+            
+            String valorComboBox = "";
+            valorComboBox = combo_tipo.getSelectedItem().toString();
+            if(ae.getSource()==cargar){
+                
+                if("Libro".equals(valorComboBox)){
+                    Administradorbiblio.libros[0]=new Libros("Miguel de Cervantes", 1615, "Don Quijote de la Mancha", 12, "Molino, Dulcinea", "Caballero en busca de Dulcinea", "Viajes", 123, 4);
+                    Administradorbiblio.libros[Administradorbiblio.personas]=new Libros(oautor,Integer.parseInt(oano), otitulo, Integer.parseInt(oedicion), opalabras, odescripcion, otemas, Integer.parseInt(oisbn), Integer.parseInt(ocopias));
+                   for(int persona1=1;persona1<Administradorbiblio.personas;persona1++){
+                                   while((Administradorbiblio.libros[Administradorbiblio.personas].titulo).equals((Administradorbiblio.libros[persona1].titulo))){
+                                       JOptionPane.showMessageDialog(null,"ESTE TITULO YA EXISTE, CAMBIARLO","ERROR",JOptionPane.WARNING_MESSAGE);
+                                       return;
+                                   }
+                               }
+                    Administradorbiblio.personas++;
+                    System.out.println(Administradorbiblio.personas);
+                }
+                if("Revista".equals(valorComboBox)){
+                    Administradorbiblio.revistas[Administradorbiblio.personas2]=new Revistas(ocategoria, Integer.parseInt(obejemplares),Integer.parseInt(ocopias), oautor, Integer.parseInt(oano), otitulo, Integer.parseInt(oedicion), opalabras, odescripcion, otemas);
+                    for(int persona=1;persona<Administradorbiblio.personas2;persona++){
+                                   while((Administradorbiblio.revistas[Administradorbiblio.personas2].titulo).equals((Administradorbiblio.revistas[persona].titulo))){
+                                       JOptionPane.showMessageDialog(Cargaindividual.this,"ESTE TITULO YA EXISTE, CAMBIARLO","ERROR",JOptionPane.WARNING_MESSAGE);
+                                       return;
+                                   }
+                               }
+                    Administradorbiblio.personas2++;
+                    System.out.println(Administradorbiblio.personas2);
+                }
+                if("Tesis".equals(valorComboBox)){
+                    Administradorbiblio.tesis[Administradorbiblio.personas3]=new Tesis(oarea, Integer.parseInt(ocopias), oautor,Integer.parseInt(oano), otitulo, Integer.parseInt(oedicion), opalabras, odescripcion, otemas);
+                    for(int persona=1;persona<Administradorbiblio.personas3;persona++){
+                                   while((Administradorbiblio.tesis[Administradorbiblio.personas3].titulo).equals((Administradorbiblio.tesis[persona].titulo))){
+                                       JOptionPane.showMessageDialog(Cargaindividual.this,"ESTE TITULO YA EXISTE, CAMBIARLO","ERROR",JOptionPane.WARNING_MESSAGE);
+                                       return;
+                                   }
+                               }
+                    Administradorbiblio.personas3++;
+                    System.out.println(Administradorbiblio.personas3);
+                }
+                if("Libro digital".equals(valorComboBox)){
+                    Administradorbiblio.librodigital[Administradorbiblio.personas4]=new Librodigital(Integer.parseInt(tamaño), oautor,Integer.parseInt(oano), otitulo, Integer.parseInt(oedicion), opalabras, odescripcion, otemas);
+                    for(int persona=1;persona<Administradorbiblio.personas4;persona++){
+                                   while((Administradorbiblio.librodigital[Administradorbiblio.personas4].titulo).equals((Administradorbiblio.librodigital[persona].titulo))){
+                                       JOptionPane.showMessageDialog(Cargaindividual.this,"ESTE TITULO YA EXISTE, CAMBIARLO","ERROR",JOptionPane.WARNING_MESSAGE);
+                                       return;
+                                   }
+                               }
+                    Administradorbiblio.personas4++;
+                    System.out.println(Administradorbiblio.personas4);
+                }
+                text_autor.setText("");
+                text_titulo.setText("");
+                text_descripcion.setText("");
+                text_palabras.setText("");
+                text_temas.setText("");
+                text_area.setText("");
+                text_categoria.setText("");
+                text_ano.setText("");
+                text_copias.setText("");
+                text_isbn.setText("");
+                text_ejemplares.setText("");
+                text_tamaño.setText("");
+                text_edicion.setText("");
+                
+                               JOptionPane.showMessageDialog(Cargaindividual.this,"ELEMENTO AGREGADO A LA BIBLIOGRAFIA","INFORMACION",JOptionPane.INFORMATION_MESSAGE);
+            }
+            if(ae.getSource()==cancel){
+                dispose();
+            }
+        }
     }
     
 }

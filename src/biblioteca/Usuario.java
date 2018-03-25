@@ -32,16 +32,6 @@ public class Usuario extends JFrame {
     public JLabel contrasena;
     public JLabel confcontrasena;
     
-//    public static String[] Lista = new String[10];
-//    public static String[] Lista2 = new String[10];
-//    public static String[] Lista3 = new String[10];
-//    public static String[] Lista4 = new String[10];
-//    public static String[] Lista5 = new String[10];
-//    public static String[] Lista6 = new String[10];
-//    public static String[] Lista7 = new String[10];
-   
-   
-    
     public static JTextField text_id;
     public static JTextField text_nombre;
     public static JTextField text_apellido;
@@ -166,15 +156,8 @@ public class Usuario extends JFrame {
                                 }
                                 Administrador.usuarios1[Administrador.personas1]=new Datosusuario(obnomb, obap, obusu, obrol, obid, obconf);
                                 
-//                               Lista7[persona]=obid;
-//                               Lista[persona]=obnomb;
-//                               Lista2[persona]=obap;
-//                               Lista3[persona]=obusu;
-//                               Lista4[persona]=obrol;
-//                               Lista5[persona]=obcon;
-//                               Lista6[persona]=obconf;
                                for(int persona1=1;persona1<Administrador.personas1;persona1++){
-                                   while((Administrador.usuarios1[Administrador.personas1].nombre).equals((Administrador.usuarios1[persona1].nombre))){
+                                   while((Administrador.usuarios1[Administrador.personas1].id).equals((Administrador.usuarios1[persona1].id))){
                                        JOptionPane.showMessageDialog(Usuario.this,"YA EXISTE UN USUARIO CON ESE ID, CAMBIARLO","ERROR",JOptionPane.WARNING_MESSAGE);
                                        return;
                                    }
