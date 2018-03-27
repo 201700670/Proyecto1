@@ -23,7 +23,7 @@ public class Libros extends Bibliografias{
     }
     public String mostrar(){
     
-        return ""+tipo+ ";"+super.mostrar()+isbn+";"+copias;
+        return ""+tipo+ ";"+super.mostrar()+";"+isbn+";"+copias;
     }
     public void prestar(){
         copias --;

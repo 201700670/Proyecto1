@@ -49,7 +49,7 @@ public class Administrador extends JFrame {
                 JTable tabla=new JTable(creaciontabla);
                 JScrollPane desplazamiento=new JScrollPane(tabla);
                 usumos.add(desplazamiento,BorderLayout.SOUTH);
-                    
+                 setSize(800,550);
                     setTitle("LISTADO DE USUARIOS REGISTRADOS");
             }
         }

@@ -138,7 +138,7 @@ public class Login extends JFrame{
                     
                     while((usuarios12.equals(Administrador.usuarios1[i].id)) && (pasword.equals(Administrador.usuarios1[i].contrasena))){
                         JOptionPane.showMessageDialog(Login.this,"BIENVENIDO","INFORMACION",JOptionPane.INFORMATION_MESSAGE);
-                        
+                        //usuarios prestar, devolver reportes
                         return;
                     }
                 }

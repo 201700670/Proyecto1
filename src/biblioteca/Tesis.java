@@ -21,6 +21,10 @@ public class Tesis extends Bibliografias {
         this.prestamos = 0;
         super.tipo=2;
     }
+    public String mostrar(){
+    
+        return ""+tipo+ ";"+super.mostrar()+";"+area+";"+copias;
+    }
 
     public String getArea() {
         return area;

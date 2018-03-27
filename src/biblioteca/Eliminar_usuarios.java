@@ -154,7 +154,7 @@ public class Eliminar_usuarios extends JFrame{
         public void actionPerformed(ActionEvent ae) {
             String arrayusuario[]=new String[10];
             String usuarios;
-            boolean probar;
+            boolean probar=true;
             String prueba2;
             
                 obnomb=text_nombre.getText();
@@ -164,6 +164,7 @@ public class Eliminar_usuarios extends JFrame{
                 obcon=pass_contrasena.getText();
                 obconf=pass_confcontrasena.getText();
                 if(ae.getSource()==buscar){
+                    contador=0;
                     usuarios=text_id.getText();
                     prueba2="";
 //                    if (((usuarios).equals(Administrador.usuarios1[Integer.parseInt(prueba2)].id))){
@@ -172,10 +173,6 @@ public class Eliminar_usuarios extends JFrame{
                     for(int i=1;i<Administrador.personas1;i++){
                         if(((usuarios).equals(Administrador.usuarios1[i].id))){
                             contador=contador+i;
-                        }
-                    }
-                        System.out.println(contador);
-                        
                             obnomb=Administrador.usuarios1[contador].nombre;
                             text_nombre.setText(obnomb);
                             obap=Administrador.usuarios1[contador].apellido;
@@ -188,13 +185,18 @@ public class Eliminar_usuarios extends JFrame{
                             pass_contrasena.setText(obcon);
                             obconf=Administrador.usuarios1[contador].contrasena;
                             pass_confcontrasena.setText(obconf);
-                            
-                            if(probar=true){
+                            probar=false;
+//                            i=Administrador.personas1;
+                        }
+                    }
+                        System.out.println(contador);
+                        
+                            if(probar){
                         JOptionPane.showMessageDialog(null,"EL USUARIO NO EXISTE","ERROR",JOptionPane.WARNING_MESSAGE);
                     }
                 }
             if(ae.getSource()==eliminar){
-                
+                if((pass_contrasena.getText()).equals(pass_confcontrasena.getText())){
                     text_nombre.setText(null);
                     obnomb=text_nombre.getText();
                     Administrador.usuarios1[contador].nombre=obnomb;
@@ -224,7 +226,7 @@ public class Eliminar_usuarios extends JFrame{
                     obconf=pass_confcontrasena.getText();
                     Administrador.usuarios1[contador].contrasena=obconf;
                 
-                 if((pass_contrasena.getText()).equals(pass_confcontrasena.getText())){
+                 
                 }else{
                     JOptionPane.showMessageDialog(Eliminar_usuarios.this,"CONTRASEÑAS NO COINCIDEN","ERROR",JOptionPane.WARNING_MESSAGE); 
                 }

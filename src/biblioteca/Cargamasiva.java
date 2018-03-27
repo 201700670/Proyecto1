@@ -49,14 +49,17 @@ public class Cargamasiva extends JFrame {
         cancelar= new JButton("Cancelar");
         cancelar.setBounds(200, 300, 100, 30);
        
-        mover=new JScrollPane(masiva);
+        mover=new JScrollPane();
+         mover.setSize(100, 30);
+        mover.setBounds(50, 70, 690, 230);
+        mover.setViewportView(masiva);
 
-        mover.setVerticalScrollBarPolicy (
-                JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        mover.setVisible(true);
-        mover.setColumnHeaderView (masiva);
+//        mover.setVerticalScrollBarPolicy (
+//                JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+//        mover.setVisible(true);
+//        mover.setColumnHeaderView (masiva);
         add(carga);
-        add(masiva);
+        add(mover);
         add(cargas);
         add(cancelar);
         Reacciones manejo=new Reacciones();
@@ -69,32 +72,38 @@ public class Cargamasiva extends JFrame {
     }
 
     private class Reacciones implements ActionListener {
-
-
+        
+        String tmp = "";
         @Override
         public void actionPerformed(ActionEvent ae) {
             if(ae.getSource()==cargas){
                 for (Libros elemento: Administradorbiblio.libros){
-                
+                    if(elemento != null){
                     if (elemento.tipo == 0){
                         Libros temporal = (Libros)elemento;
-                        masiva.setText(temporal.mostrar());
+                        tmp += temporal.mostrar() + "\n";
+                       
+                    }
+                    
                     }
         }
                 for (Revistas elemento: Administradorbiblio.revistas){
-                
+                     if(elemento != null){
                     if (elemento.tipo == 1){
                         Revistas temporal = (Revistas)elemento;
-                        masiva.setText(temporal.mostrar());
+                       tmp += temporal.mostrar() + "\n";
                     }
+                     }
         }
                 for (Tesis elemento: Administradorbiblio.tesis){
-                
+                 if(elemento != null){
                     if (elemento.tipo == 2){
                         Tesis temporal = (Tesis)elemento;
-                        masiva.setText(temporal.mostrar());
+                        tmp += temporal.mostrar() + "\n";
                     }
+                 }
         }
+                 masiva.setText(tmp);
             }
             if(ae.getSource()==cancelar){
                 dispose();

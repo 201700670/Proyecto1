@@ -23,6 +23,10 @@ public class Revistas extends Bibliografias{
         this.prestamos=0;
         super.tipo=1;
     }
+    public String mostrar(){
+    
+        return ""+tipo+ ";"+super.mostrar()+";"+ejemplares+";"+categoria+";"+copias;
+    }
     
     public void prestar(){
         copias --;

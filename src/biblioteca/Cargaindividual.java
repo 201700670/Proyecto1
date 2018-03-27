@@ -249,7 +249,7 @@ public class Cargaindividual extends JFrame{
             if(ae.getSource()==cargar){
                 
                 if("Libro".equals(valorComboBox)){
-                    Administradorbiblio.libros[0]=new Libros("Miguel de Cervantes", 1615, "Don Quijote de la Mancha", 12, "Molino, Dulcinea", "Caballero en busca de Dulcinea", "Viajes", 123, 4);
+                    
                     Administradorbiblio.libros[Administradorbiblio.personas]=new Libros(oautor,Integer.parseInt(oano), otitulo, Integer.parseInt(oedicion), opalabras, odescripcion, otemas, Integer.parseInt(oisbn), Integer.parseInt(ocopias));
                    for(int persona1=1;persona1<Administradorbiblio.personas;persona1++){
                                    while((Administradorbiblio.libros[Administradorbiblio.personas].titulo).equals((Administradorbiblio.libros[persona1].titulo))){

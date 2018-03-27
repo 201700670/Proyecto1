@@ -34,6 +34,7 @@ public class AdministradorJF extends JFrame{
     private JButton mostrarbiblio;
     private JButton reporteusuario;
     private JButton reportelibro;
+    private JButton LogOut;
     
     private ImageIcon imagen;
     
@@ -97,6 +98,10 @@ public class AdministradorJF extends JFrame{
         reporteusuario.setSize(dim);
         reporteusuario.setBounds(300, 290, 130, 30);
         
+        LogOut = new JButton("LogOut");
+        LogOut.setSize(dim);
+        LogOut.setBounds(400, 20, 130, 30);
+        
         pnl = new JPanel();
         pnl.setSize(600, 600);
         pnl.setBounds(0,0,600,600);
@@ -114,7 +119,7 @@ public class AdministradorJF extends JFrame{
         add(mostrarbiblio);
         add(reportelibro);
         add(reporteusuario);
-      
+        add(LogOut);
         
         setSize(600,400);
         setVisible(true);
@@ -129,6 +134,7 @@ public class AdministradorJF extends JFrame{
         mostrarbiblio.addActionListener(manejo);
         reportelibro.addActionListener(manejo);
         reporteusuario.addActionListener(manejo);
+        LogOut.addActionListener(manejo);
 }
 
     private class Evento implements ActionListener{
@@ -150,11 +156,32 @@ public class AdministradorJF extends JFrame{
             if(ae.getSource()==mostrarusuario){
               Administrador obj= new Administrador();
                    obj.setVisible(true);
-                   obj.setSize(500,400);
+                  
             }
             if(ae.getSource()==crearbiblio){
+//                Cargaindividual obj=new Cargaindividual();
+//                obj.setVisible(true);
                 botoncargar obj=new botoncargar();
                 obj.setVisible(true);
+            }
+            if(ae.getSource()==modificarbiblio){
+              Modificar_bibliografia obj= new Modificar_bibliografia();
+                   obj.setVisible(true);
+                   
+            }
+            if(ae.getSource()==eliminadrbiblio){
+              Eliminar_bibliografia obj= new Eliminar_bibliografia();
+                   obj.setVisible(true);
+                   
+            }
+            if(ae.getSource()==mostrarbiblio){
+              Administradorbiblio obj= new Administradorbiblio();
+                   obj.setVisible(true);
+            }
+            if(ae.getSource()==LogOut){
+                Login obj=new Login();
+                obj.setVisible(true);
+                dispose();
             }
         }
     }
