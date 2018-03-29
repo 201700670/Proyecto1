@@ -56,7 +56,7 @@ public class Cargaindividual extends JFrame{
     public Cargaindividual(){
         setLayout(null);
         setLocationRelativeTo(null);
-        setTitle("MODIFICAR USUARIOS");
+        setTitle("CARGA INDIVIDUAL");
         Dimension dim = new Dimension(200, 50);
         
         autor = new JLabel("Autor: ");

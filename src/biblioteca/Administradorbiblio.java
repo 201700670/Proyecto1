@@ -44,15 +44,6 @@ public class Administradorbiblio extends JFrame{
         }
 }
     public Administradorbiblio(){
-////        for(int i = 0; i<libros.length; i++){
-////            libros[i] = null;
-////        }
-////        for(int j=0; j<revistas.length;j++){
-////            revistas[j] = null;
-////        }
-////        for(int k=0; k<tesis.length;k++){
-////            tesis [k] = null;
-////        }
         
        for(int i=1;i<personas;i++){
             String[]moslib={ String.valueOf(Administradorbiblio.libros[i].tipo),Administradorbiblio.libros[i].autor, String.valueOf(Administradorbiblio.libros[i].ano), Administradorbiblio.libros[i].titulo, Administradorbiblio.libros[i].descripcion, Administradorbiblio.libros[i].palabras, String.valueOf(Administradorbiblio.libros[i].edicion),Administradorbiblio.libros[i].temas,String.valueOf(Administradorbiblio.libros[i].copias)," "," ",String.valueOf(Administradorbiblio.libros[i].isbn)," ", " "};

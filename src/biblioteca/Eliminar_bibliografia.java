@@ -121,10 +121,12 @@ public class Eliminar_bibliografia extends JFrame{
         text_autor = new JTextField();
         text_autor.setSize(dim);
         text_autor.setBounds(130,30,300,25);
+        text_autor.setEnabled(false);
         
         text_ano = new JTextField();
         text_ano.setSize(dim);
         text_ano.setBounds(130,60,300,25);
+        text_ano.setEnabled(false);
         
         text_titulo = new JTextField();
         text_titulo.setSize(dim);
@@ -133,42 +135,52 @@ public class Eliminar_bibliografia extends JFrame{
         text_descripcion = new JTextField();
         text_descripcion.setSize(dim);
         text_descripcion.setBounds(130,120,300,25);
+        text_descripcion.setEnabled(false);
         
         text_palabras = new JTextField();
         text_palabras.setSize(dim);
         text_palabras.setBounds(130,150,300,25);
+        text_palabras.setEnabled(false);
         
         text_edicion = new JTextField();
         text_edicion.setSize(dim);
         text_edicion.setBounds(130,180,300,25);
+        text_edicion.setEnabled(false);
         
         text_temas = new JTextField();
         text_temas.setSize(dim);
         text_temas.setBounds(130,210,300,25);
+        text_temas.setEnabled(false);
         
         text_copias = new JTextField();
         text_copias.setSize(dim);
         text_copias.setBounds(130,240,300,25);
+        text_copias.setEnabled(false);
         
         text_area = new JTextField();
         text_area.setSize(dim);
         text_area.setBounds(130,270,300,25);
+        text_area.setEnabled(false);
         
         text_categoria = new JTextField();
         text_categoria.setSize(dim);
         text_categoria.setBounds(130,300,300,25);
+        text_categoria.setEnabled(false);
         
         text_isbn = new JTextField();
         text_isbn.setSize(dim);
         text_isbn.setBounds(130,330,300,25);
+        text_isbn.setEnabled(false);
         
         text_ejemplares = new JTextField();
         text_ejemplares.setSize(dim);
         text_ejemplares.setBounds(130,360,300,25);
+        text_ejemplares.setEnabled(false);
         
         text_tamaño = new JTextField();
         text_tamaño.setSize(dim);
         text_tamaño.setBounds(130,390,300,25);
+        text_tamaño.setEnabled(false);
         
         combo_tipo= new JComboBox();
         combo_tipo.setSize(dim);
@@ -244,9 +256,9 @@ public class Eliminar_bibliografia extends JFrame{
             String valorComboBox = "";
             valorComboBox = combo_tipo.getSelectedItem().toString();
             if(ae.getSource()==buscar){
-                contador=0;
                 ////////////////LIBROS
                 if("Libro".equals(valorComboBox)){
+                    contador=0;
                     bibliotitulos=text_titulo.getText();
                     for (int i=1;i<Administradorbiblio.personas;i++){
                         if(bibliotitulos.equals(Administradorbiblio.libros[i].titulo)){
@@ -277,6 +289,7 @@ public class Eliminar_bibliografia extends JFrame{
                 }
                 ////////////REVISTAS
                 if("Revista".equals(valorComboBox)){
+                    contador2=0;
                     bibliotitulos=text_titulo.getText();
                     for (int i=1;i<Administradorbiblio.personas2;i++){
                         if(bibliotitulos.equals(Administradorbiblio.revistas[i].titulo)){
@@ -310,6 +323,7 @@ public class Eliminar_bibliografia extends JFrame{
                 
                 ////////////////TESIS
                 if("Tesis".equals(valorComboBox)){
+                    contador3=0;
                     bibliotitulos=text_titulo.getText();
                     for (int i=1;i<Administradorbiblio.personas3;i++){
                         if(bibliotitulos.equals(Administradorbiblio.tesis[i].titulo)){
@@ -341,6 +355,7 @@ public class Eliminar_bibliografia extends JFrame{
                 }
                 //////////////////////LIBROS DIGITALES
                 if("Libro digital".equals(valorComboBox)){
+                    contador4=0;
                     bibliotitulos=text_titulo.getText();
                     for (int i=1;i<Administradorbiblio.personas4;i++){
                         if(bibliotitulos.equals(Administradorbiblio.librodigital[i].titulo)){

@@ -52,6 +52,7 @@ public class botoncargar extends JFrame{
                 obj.setVisible(true);
             }
             if(ae.getSource()==masiva){
+//                Biblioteca_virtual obj=new Biblioteca_virtual();
                 Cargamasiva obj=new Cargamasiva();
                 obj.setVisible(true);
                 
