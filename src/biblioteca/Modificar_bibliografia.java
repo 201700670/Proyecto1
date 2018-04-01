@@ -243,16 +243,14 @@ public class Modificar_bibliografia extends JFrame{
             String valorComboBox = "";
             valorComboBox = combo_tipo.getSelectedItem().toString();
             if(ae.getSource()==buscar){
-                contador=0;
                 ////////////////LIBROS
                 if("Libro".equals(valorComboBox)){
+                    contador=0;
                     bibliotitulos=text_titulo.getText();
                     for (int i=1;i<Administradorbiblio.personas;i++){
                         if(bibliotitulos.equals(Administradorbiblio.libros[i].titulo)){
                             contador=contador+i;
-                        }
-                    }
-                        System.out.println(contador);
+                            System.out.println(contador);
                         oautor=Administradorbiblio.libros[contador].autor;
                         text_autor.setText(oautor);
                         oano=Administradorbiblio.libros[contador].ano;
@@ -271,16 +269,22 @@ public class Modificar_bibliografia extends JFrame{
                         text_isbn.setText(String.valueOf(oisbn));
                         ocopias=Administradorbiblio.libros[contador].copias;
                         text_copias.setText(String.valueOf(ocopias));
+                        probar=false;
+                        i=Administradorbiblio.personas;
+                        }
+                    }
+                     if(probar){
+                        JOptionPane.showMessageDialog(null,"ESTE LIBRO NO EXISTE, INTENTE DE NUEVO","ERROR",JOptionPane.WARNING_MESSAGE);
+                    }   
                 }
                 ////////////REVISTAS
                 if("Revista".equals(valorComboBox)){
+                    contador2=0;
                     bibliotitulos=text_titulo.getText();
                     for (int i=1;i<Administradorbiblio.personas2;i++){
                         if(bibliotitulos.equals(Administradorbiblio.revistas[i].titulo)){
                             contador2=contador2+i;
-                        }
-                    }
-                        System.out.println(contador2);
+                            System.out.println(contador2);
                         oautor=Administradorbiblio.revistas[contador2].autor;
                         text_autor.setText(oautor);
                         oano=Administradorbiblio.revistas[contador2].ano;
@@ -301,17 +305,23 @@ public class Modificar_bibliografia extends JFrame{
                         text_copias.setText(String.valueOf(ocopias));
                         obejemplares=Administradorbiblio.revistas[contador2].ejemplares;
                         text_ejemplares.setText(String.valueOf(obejemplares));
+                        probar=false;
+                        i=Administradorbiblio.personas;
+                        }
+                    }
+                        if(probar){
+                        JOptionPane.showMessageDialog(null,"ESTA REVISTA NO EXISTE, INTENTE DE NUEVO","ERROR",JOptionPane.WARNING_MESSAGE);
+                    }  
                 }
                 
                 ////////////////TESIS
                 if("Tesis".equals(valorComboBox)){
+                    contador3=0;
                     bibliotitulos=text_titulo.getText();
                     for (int i=1;i<Administradorbiblio.personas3;i++){
                         if(bibliotitulos.equals(Administradorbiblio.tesis[i].titulo)){
                             contador3=contador3+i;
-                        }
-                    }
-                        System.out.println(contador3);
+                           System.out.println(contador3);
                         oautor=Administradorbiblio.tesis[contador3].autor;
                         text_autor.setText(oautor);
                         oano=Administradorbiblio.tesis[contador3].ano;
@@ -329,7 +339,14 @@ public class Modificar_bibliografia extends JFrame{
                         oarea=Administradorbiblio.tesis[contador3].area;
                         text_area.setText(oarea);
                         ocopias=Administradorbiblio.tesis[contador3].copias;
-                        text_copias.setText(String.valueOf(ocopias));
+                        text_copias.setText(String.valueOf(ocopias)); 
+                        probar=false;
+                        i=Administradorbiblio.personas;
+                        }
+                    }
+                      if(probar){
+                        JOptionPane.showMessageDialog(null,"ESTA TESIS NO EXISTE, INTENTE DE NUEVO","ERROR",JOptionPane.WARNING_MESSAGE);
+                    }    
                         
                 }
                 //////////////////////LIBROS DIGITALES
@@ -338,9 +355,7 @@ public class Modificar_bibliografia extends JFrame{
                     for (int i=1;i<Administradorbiblio.personas4;i++){
                         if(bibliotitulos.equals(Administradorbiblio.librodigital[i].titulo)){
                             contador4=contador4+i;
-                        }
-                    }
-                        System.out.println(contador4);
+                            System.out.println(contador4);
                         oautor=Administradorbiblio.librodigital[contador4].autor;
                         text_autor.setText(oautor);
                         oano=Administradorbiblio.librodigital[contador4].ano;
@@ -357,6 +372,13 @@ public class Modificar_bibliografia extends JFrame{
                         text_temas.setText(otemas);
                         tamaño=Administradorbiblio.librodigital[contador4].tamaño;
                         text_tamaño.setText(String.valueOf(tamaño));
+                        probar=false;
+                        i=Administradorbiblio.personas;
+                        }
+                    }
+                     if(probar){
+                        JOptionPane.showMessageDialog(null,"ESTE LIBRO DIGITAL NO EXISTE, INTENTE DE NUEVO","ERROR",JOptionPane.WARNING_MESSAGE);
+                    }     
                 }
             }
             
@@ -491,7 +513,9 @@ public class Modificar_bibliografia extends JFrame{
                 }
                 dispose();
             }
-            
+            if(ae.getSource()==cancel){
+                dispose();
+            }
         }
     }
     

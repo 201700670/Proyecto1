@@ -6,6 +6,8 @@
 package biblioteca;
 
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -90,7 +92,31 @@ public class Usuarionormal extends JFrame{
         add(pnlicon);
         add(logo);
         
+        Evaluar manejo=new Evaluar();
+        logIn.addActionListener(manejo);
+        logOut.addActionListener(manejo);
+        registrarse.addActionListener(manejo);
+        
         setSize(600,550);
         setVisible(true);
+    }
+    private class Evaluar implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            if(ae.getSource()==logIn){
+                Biblioteca_virtual obj=new Biblioteca_virtual();
+                obj.setVisible(true);
+            }
+            if(ae.getSource()==logOut){
+                Principal obj=new Principal();
+                obj.setVisible(true);
+                
+            }
+            if(ae.getSource()==registrarse){
+                Prestamosgeneral obj=new Prestamosgeneral();
+                obj.setVisible(true);
+            }
+        }
     }
 }

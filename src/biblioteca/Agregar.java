@@ -49,7 +49,7 @@ public class Agregar extends JFrame {
     public Agregar(){
         setLayout(null);
         setLocationRelativeTo(null);
-        setTitle("CARGA INDIVIDUAL");
+        setTitle("AGREGAR LIBROS DIGITALES");
         Dimension dim = new Dimension(200, 50);
         
         agr = new JLabel("COPIE Ó COLOQUE EL TÍTULO DEL LIBRO QUE DESEA AGREGAR A SU CUENTA");

@@ -6,7 +6,6 @@
 package biblioteca;
 
 import java.awt.Dimension;
-import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -20,7 +19,15 @@ import javax.swing.JTextField;
  *
  * @author Andrea Palomo
  */
-public class Eliminar_bibliografia extends JFrame{
+public class Prestar extends JFrame{
+     public static Libros[]prestados=new Libros[10];
+     public static Revistas[]prestados1=new Revistas[10];
+     public static Tesis[]prestados2=new Tesis[10];
+     
+    public static int restandos=1;
+    public static int restandos1=1;
+    public static int restandos2=1;
+    
     public JLabel autor;
     public JLabel ano;
     public JLabel titulo;
@@ -35,6 +42,7 @@ public class Eliminar_bibliografia extends JFrame{
     public JLabel ejemplares;
     public JLabel tamaño;
     public JLabel tipo;
+    public JLabel agr;
     
     public JTextField text_autor;
     public JTextField text_ano;
@@ -51,15 +59,13 @@ public class Eliminar_bibliografia extends JFrame{
     public JTextField text_tamaño;
     
     public JComboBox combo_tipo;
-    
-    private JButton eliminar;
+    private JButton prestarse;
     private JButton cancel;
     private JButton buscar;
-
-    public Eliminar_bibliografia() {
+    public Prestar(){
         setLayout(null);
         setLocationRelativeTo(null);
-        setTitle("ELIMINAR USUARIOS");
+        setTitle("MODIFICAR USUARIOS");
         Dimension dim = new Dimension(200, 50);
         
         autor = new JLabel("Autor: ");
@@ -110,9 +116,9 @@ public class Eliminar_bibliografia extends JFrame{
         ejemplares.setSize(dim);
         ejemplares.setBounds(50,350,300,50);
         
-        tamaño = new JLabel("Tamaño: ");
-        tamaño.setSize(dim);
-        tamaño.setBounds(50,380,300,50);
+        agr = new JLabel("COPIE Ó COLOQUE EL TÍTULO Y TIPO DEL ELEMENTO A PRESTAR");
+        agr.setSize(dim);
+        agr.setBounds(95,380,500,50);
         
         tipo = new JLabel("Tipo: ");
         tipo.setSize(dim);
@@ -121,12 +127,10 @@ public class Eliminar_bibliografia extends JFrame{
         text_autor = new JTextField();
         text_autor.setSize(dim);
         text_autor.setBounds(130,30,300,25);
-        text_autor.setEnabled(false);
         
         text_ano = new JTextField();
         text_ano.setSize(dim);
         text_ano.setBounds(130,60,300,25);
-        text_ano.setEnabled(false);
         
         text_titulo = new JTextField();
         text_titulo.setSize(dim);
@@ -135,52 +139,38 @@ public class Eliminar_bibliografia extends JFrame{
         text_descripcion = new JTextField();
         text_descripcion.setSize(dim);
         text_descripcion.setBounds(130,120,300,25);
-        text_descripcion.setEnabled(false);
         
         text_palabras = new JTextField();
         text_palabras.setSize(dim);
         text_palabras.setBounds(130,150,300,25);
-        text_palabras.setEnabled(false);
         
         text_edicion = new JTextField();
         text_edicion.setSize(dim);
         text_edicion.setBounds(130,180,300,25);
-        text_edicion.setEnabled(false);
         
         text_temas = new JTextField();
         text_temas.setSize(dim);
         text_temas.setBounds(130,210,300,25);
-        text_temas.setEnabled(false);
         
         text_copias = new JTextField();
         text_copias.setSize(dim);
         text_copias.setBounds(130,240,300,25);
-        text_copias.setEnabled(false);
         
         text_area = new JTextField();
         text_area.setSize(dim);
         text_area.setBounds(130,270,300,25);
-        text_area.setEnabled(false);
         
         text_categoria = new JTextField();
         text_categoria.setSize(dim);
         text_categoria.setBounds(130,300,300,25);
-        text_categoria.setEnabled(false);
         
         text_isbn = new JTextField();
         text_isbn.setSize(dim);
         text_isbn.setBounds(130,330,300,25);
-        text_isbn.setEnabled(false);
         
         text_ejemplares = new JTextField();
         text_ejemplares.setSize(dim);
         text_ejemplares.setBounds(130,360,300,25);
-        text_ejemplares.setEnabled(false);
-        
-        text_tamaño = new JTextField();
-        text_tamaño.setSize(dim);
-        text_tamaño.setBounds(130,390,300,25);
-        text_tamaño.setEnabled(false);
         
         combo_tipo= new JComboBox();
         combo_tipo.setSize(dim);
@@ -190,9 +180,9 @@ public class Eliminar_bibliografia extends JFrame{
         combo_tipo.addItem("Tesis");
         combo_tipo.addItem("Libro digital");
         
-        eliminar = new JButton("Eliminar");
-        eliminar.setSize(dim);
-        eliminar.setBounds(130, 460, 100, 30);
+        prestarse = new JButton("Prestar");
+        prestarse.setSize(dim);
+        prestarse.setBounds(130, 460, 100, 30);
         
         buscar = new JButton("Buscar");
         buscar.setSize(dim);
@@ -213,7 +203,6 @@ public class Eliminar_bibliografia extends JFrame{
         add(area);
         add(categoria);
         add(ejemplares);
-        add(tamaño);
         add(isbn);
         add(tipo);
         add(text_autor);
@@ -228,34 +217,35 @@ public class Eliminar_bibliografia extends JFrame{
         add(text_categoria);
         add(text_isbn);
         add(text_ejemplares);
-        add(text_tamaño);
         add(combo_tipo);
-        add(eliminar);
-        add(buscar);
+        add(prestarse);
         add(cancel);
+        add(buscar);
+        add(agr);
         
-        Reaccion manejo=new Reaccion();
-        eliminar.addActionListener(manejo);
+        reacciones manejo=new reacciones();
+        prestarse.addActionListener(manejo);
         cancel.addActionListener(manejo);
-        combo_tipo.addActionListener(manejo);
         buscar.addActionListener(manejo);
+        
         setSize(580,550);
         setVisible(true);
         
-        
     }
-
-    private class Reaccion implements ActionListener{
+    private class reacciones implements ActionListener{
         String bibliotitulos;
         int contador,contador2,contador3,contador4;
         String oautor,otitulo,odescripcion,opalabras,otemas,oarea,ocategoria;
         int otipo,oano,oedicion,ocopias,oisbn,obejemplares,tamaño;
+        String oejemplares;
         boolean probando=true;
         @Override
         public void actionPerformed(ActionEvent ae) {
             String valorComboBox = "";
-            valorComboBox = combo_tipo.getSelectedItem().toString();
+                valorComboBox = combo_tipo.getSelectedItem().toString();
+            
             if(ae.getSource()==buscar){
+                
                 ////////////////LIBROS
                 if("Libro".equals(valorComboBox)){
                     contador=0;
@@ -286,10 +276,9 @@ public class Eliminar_bibliografia extends JFrame{
                         i=Administradorbiblio.personas;
                         }
                     }
-                    if(probando){
+                     if(probando){
                         JOptionPane.showMessageDialog(null,"ESTE LIBRO NO EXISTE, INTENTE DE NUEVO","ERROR",JOptionPane.WARNING_MESSAGE);
-                    }
-                        
+                    }   
                 }
                 ////////////REVISTAS
                 if("Revista".equals(valorComboBox)){
@@ -323,10 +312,9 @@ public class Eliminar_bibliografia extends JFrame{
                         i=Administradorbiblio.personas;
                         }
                     }
-                    if(probando){
+                        if(probando){
                         JOptionPane.showMessageDialog(null,"ESTA REVISTA NO EXISTE, INTENTE DE NUEVO","ERROR",JOptionPane.WARNING_MESSAGE);
-                    }
-                        
+                    }  
                 }
                 
                 ////////////////TESIS
@@ -336,7 +324,7 @@ public class Eliminar_bibliografia extends JFrame{
                     for (int i=1;i<Administradorbiblio.personas3;i++){
                         if(bibliotitulos.equals(Administradorbiblio.tesis[i].titulo)){
                             contador3=contador3+i;
-                            System.out.println(contador3);
+                           System.out.println(contador3);
                         oautor=Administradorbiblio.tesis[contador3].autor;
                         text_autor.setText(oautor);
                         oano=Administradorbiblio.tesis[contador3].ano;
@@ -354,181 +342,92 @@ public class Eliminar_bibliografia extends JFrame{
                         oarea=Administradorbiblio.tesis[contador3].area;
                         text_area.setText(oarea);
                         ocopias=Administradorbiblio.tesis[contador3].copias;
-                        text_copias.setText(String.valueOf(ocopias));
+                        text_copias.setText(String.valueOf(ocopias)); 
                         probando=false;
                         i=Administradorbiblio.personas;
                         }
                     }
-                     if(probando){
+                      if(probando){
                         JOptionPane.showMessageDialog(null,"ESTA TESIS NO EXISTE, INTENTE DE NUEVO","ERROR",JOptionPane.WARNING_MESSAGE);
-                    }   
+                    }    
                         
                 }
-                //////////////////////LIBROS DIGITALES
-                if("Libro digital".equals(valorComboBox)){
-                    contador4=0;
-                    bibliotitulos=text_titulo.getText();
-                    for (int i=1;i<Administradorbiblio.personas4;i++){
-                        if(bibliotitulos.equals(Administradorbiblio.librodigital[i].titulo)){
-                            contador4=contador4+i;
-                            System.out.println(contador4);
-                        oautor=Administradorbiblio.librodigital[contador4].autor;
-                        text_autor.setText(oautor);
-                        oano=Administradorbiblio.librodigital[contador4].ano;
-                        text_ano.setText(String.valueOf(oano));
-//                        otitulo=Administradorbiblio.librodigital[contador4].titulo;
-//                        text_titulo.setText(otitulo);
-                        oedicion=Administradorbiblio.librodigital[contador4].edicion;
-                        text_edicion.setText(String.valueOf(oedicion));
-                        opalabras=Administradorbiblio.librodigital[contador4].palabras;
-                        text_palabras.setText(opalabras);
-                        odescripcion=Administradorbiblio.librodigital[contador4].descripcion;
-                        text_descripcion.setText(odescripcion);
-                        otemas=Administradorbiblio.librodigital[contador4].temas;
-                        text_temas.setText(otemas);
-                        tamaño=Administradorbiblio.librodigital[contador4].tamaño;
-                        text_tamaño.setText(String.valueOf(tamaño));
-                        probando=false;
-                        i=Administradorbiblio.personas;
-                        }
-                    }
-                     if(probando){
-                        JOptionPane.showMessageDialog(null,"ESTE LIBRO DIGITAL NO EXISTE, INTENTE DE NUEVO","ERROR",JOptionPane.WARNING_MESSAGE);
-                    }   
+                
+                    
                 }
-            }
-            
-            //////////////////////////////////BOTON MODIFICAR
-            if(ae.getSource()==eliminar){
-                 ////////////////LIBRO
-                 if("Libro".equals(valorComboBox)){
-                        text_autor.setText(null);
-                        oautor=text_autor.getText();
-                        Administradorbiblio.libros[contador].autor=oautor;
-                        text_ano.setText("0");
+            if(ae.getSource()==prestarse){
+                oautor=text_autor.getText();
                         oano=Integer.parseInt(text_ano.getText());
-                        Administradorbiblio.libros[contador].ano=oano;
-                        text_titulo.setText(null);
                         otitulo=text_titulo.getText();
-                        Administradorbiblio.libros[contador].titulo=otitulo;
-                        text_edicion.setText("0");
                         oedicion=Integer.parseInt(text_edicion.getText());
-                        Administradorbiblio.libros[contador].edicion=oedicion;
-                        text_palabras.setText(null);
                         opalabras=text_palabras.getText();
-                        Administradorbiblio.libros[contador].palabras=opalabras;
-                        text_descripcion.setText(null);
                         odescripcion=text_descripcion.getText();
-                        Administradorbiblio.libros[contador].descripcion=odescripcion;
-                        text_temas.setText(null);
                         otemas=text_temas.getText();
-                        Administradorbiblio.libros[contador].temas=otemas;
-                        text_isbn.setText("0");
                         oisbn=Integer.parseInt(text_isbn.getText());
-                        Administradorbiblio.libros[contador].isbn=oisbn;
-                        text_copias.setText("0");
-                        ocopias=Integer.parseInt(text_copias.getText());
-                        Administradorbiblio.libros[contador].copias=ocopias;
-                    
-                 }
-                    
-                ////////////////REVISTA
-                if("Revista".equals(valorComboBox)){
-                        text_autor.setText(null);
-                        oautor=text_autor.getText();
-                        Administradorbiblio.revistas[contador2].autor=oautor;
-                        text_ano.setText("0");
-                        oano=Integer.parseInt(text_ano.getText());
-                        Administradorbiblio.revistas[contador2].ano=oano;
-                        text_titulo.setText(null);
-                        otitulo=text_titulo.getText();
-                        Administradorbiblio.revistas[contador2].titulo=otitulo;
-                        text_edicion.setText("0");
-                        oedicion=Integer.parseInt(text_edicion.getText());
-                        Administradorbiblio.revistas[contador2].edicion=oedicion;
-                        text_palabras.setText(null);
-                        opalabras=text_palabras.getText();
-                        Administradorbiblio.revistas[contador2].palabras=opalabras;
-                        text_descripcion.setText(null);
-                        odescripcion=text_descripcion.getText();
-                        Administradorbiblio.revistas[contador2].descripcion=odescripcion;
-                        text_temas.setText(null);
-                        otemas=text_temas.getText();
-                        Administradorbiblio.revistas[contador2].temas=otemas;
-                        text_categoria.setText(null);
                         ocategoria=text_categoria.getText();
-                        Administradorbiblio.revistas[contador2].categoria=ocategoria;
-                        text_copias.setText("0");
-                        ocopias=Integer.parseInt(text_copias.getText());
-                        Administradorbiblio.revistas[contador2].copias=ocopias;
-                        text_ejemplares.setText("0");
-                        obejemplares=Integer.parseInt(text_ejemplares.getText());
-                        Administradorbiblio.revistas[contador2].ejemplares=obejemplares;
-                }
-                ////////////////TESIS
-                if("Tesis".equals(valorComboBox)){
-                        text_autor.setText(null);
-                        oautor=text_autor.getText();
-                        Administradorbiblio.tesis[contador3].autor=oautor;
-                        text_ano.setText("0");
-                        oano=Integer.parseInt(text_ano.getText());
-                        Administradorbiblio.tesis[contador3].ano=oano;
-                        text_titulo.setText(null);
-                        otitulo=text_titulo.getText();
-                        Administradorbiblio.tesis[contador3].titulo=otitulo;
-                        text_edicion.setText("0");
-                        oedicion=Integer.parseInt(text_edicion.getText());
-                        Administradorbiblio.tesis[contador3].edicion=oedicion;
-                        text_palabras.setText(null);
-                        opalabras=text_palabras.getText();
-                        Administradorbiblio.tesis[contador3].palabras=opalabras;
-                        text_descripcion.setText(null);
-                        odescripcion=text_descripcion.getText();
-                        Administradorbiblio.tesis[contador3].descripcion=odescripcion;
-                        text_temas.setText(null);
-                        otemas=text_temas.getText();
-                        Administradorbiblio.tesis[contador3].temas=otemas;
-                        text_area.setText(null);
+                        oejemplares=text_ejemplares.getText();
                         oarea=text_area.getText();
-                        Administradorbiblio.tesis[contador3].area=oarea;
-                        text_copias.setText("0");
-                        ocopias=Integer.parseInt(text_copias.getText());
-                        Administradorbiblio.tesis[contador3].copias=ocopias;
+                        
+                        
+                if("Libro".equals(valorComboBox)){
+                    if(ocopias>0){
+                    Administradorbiblio.libros[contador].prestar();
+                    ocopias=Integer.parseInt(text_copias.getText());
+                    prestados[restandos]=new Libros(oautor,oano, otitulo, oedicion, opalabras, odescripcion, otemas,oisbn, ocopias);
+                   for(int persona1=1;persona1<restandos;persona1++){
+                                   while((prestados[restandos].titulo).equals((prestados[persona1].titulo))){
+                                       JOptionPane.showMessageDialog(null,"ESTE TITULO YA EXISTE, CAMBIARLO","ERROR",JOptionPane.WARNING_MESSAGE);
+                                       return;
+                                   }
+                               }
+                    restandos++;
+                    System.out.println(restandos);
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null,"NO HAY DISPONIBLES POR EL MOMENTO","ERROR",JOptionPane.WARNING_MESSAGE);
+                    }
                 }
-                //////////////////////LIBROS DIGITALES
-                if("Libro digital".equals(valorComboBox)){
-                    System.out.println(contador4);
-                        text_autor.setText(null);
-                        oautor=text_autor.getText();
-                        Administradorbiblio.librodigital[contador4].autor=oautor;
-                        text_ano.setText("0");
-                        oano=Integer.parseInt(text_ano.getText());
-                        Administradorbiblio.librodigital[contador4].ano=oano;
-                        text_titulo.setText(null);
-                        otitulo=text_titulo.getText();
-                        Administradorbiblio.librodigital[contador4].titulo=otitulo;
-                        text_edicion.setText("0");
-                        oedicion=Integer.parseInt(text_edicion.getText());
-                        Administradorbiblio.librodigital[contador4].edicion=oedicion;
-                        text_palabras.setText(null);
-                        opalabras=text_palabras.getText();
-                        Administradorbiblio.librodigital[contador4].palabras=opalabras;
-                        text_descripcion.setText(null);
-                        odescripcion=text_descripcion.getText();
-                        Administradorbiblio.librodigital[contador4].descripcion=odescripcion;
-                        text_temas.setText(null);
-                        otemas=text_temas.getText();
-                        Administradorbiblio.librodigital[contador4].temas=otemas;
-                        text_tamaño.setText("0");
-                        tamaño=Integer.parseInt(text_tamaño.getText());
-                        Administradorbiblio.librodigital[contador4].tamaño=tamaño;
-                } 
-                 dispose();   
+                if("Revista".equals(valorComboBox)){
+                    if(ocopias>0){
+                    Administradorbiblio.revistas[contador2].prestar();
+                    ocopias=Integer.parseInt(text_copias.getText());
+                    prestados1[restandos]=new Revistas(ocategoria, obejemplares,ocopias, oautor, oano, otitulo, oedicion, opalabras, odescripcion, otemas);
+                    for(int persona=1;persona<restandos1;persona++){
+                                   while((prestados1[restandos1].titulo).equals((prestados1[restandos1].titulo))){
+                                       JOptionPane.showMessageDialog(null,"ESTE TITULO YA EXISTE, CAMBIARLO","ERROR",JOptionPane.WARNING_MESSAGE);
+                                       return;
+                                   }
+                               }
+                    restandos1++;
+                    System.out.println(restandos1);
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null,"NO HAY DISPONIBLES POR EL MOMENTO","ERROR",JOptionPane.WARNING_MESSAGE);
+                    }
+                }
+                if("Tesis".equals(valorComboBox)){
+                    if(ocopias>0){
+                    Administradorbiblio.tesis[contador3].prestar();
+                    ocopias=Integer.parseInt(text_copias.getText());
+                    prestados2[restandos]=new Tesis(oarea, ocopias, oautor,oano, otitulo, oedicion, opalabras, odescripcion, otemas);
+                    for(int persona=1;persona<restandos2;persona++){
+                                   while((prestados2[restandos2].titulo).equals((prestados2[restandos2].titulo))){
+                                       JOptionPane.showMessageDialog(null,"ESTE TITULO YA EXISTE, CAMBIARLO","ERROR",JOptionPane.WARNING_MESSAGE);
+                                       return;
+                                   }
+                               }
+                    restandos2++;
+                    System.out.println(restandos2);
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null,"NO HAY DISPONIBLES POR EL MOMENTO","ERROR",JOptionPane.WARNING_MESSAGE);
+                    }
+                }
+                        dispose();
             }
             if(ae.getSource()==cancel){
                 dispose();
             }
         }
     }
-    
 }

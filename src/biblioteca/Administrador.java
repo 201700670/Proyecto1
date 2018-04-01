@@ -44,12 +44,14 @@ public class Administrador extends JFrame {
         }
         
           add(usumos);
-       
-             
+          usumos.setBounds(10,0,600,600);
+             usumos.setSize(800, 800);
                 JTable tabla=new JTable(creaciontabla);
+                tabla.setSize(500,500);
+                tabla.setPreferredScrollableViewportSize(new Dimension(750, 200));
                 JScrollPane desplazamiento=new JScrollPane(tabla);
                 usumos.add(desplazamiento,BorderLayout.SOUTH);
-                 setSize(800,550);
+                 setSize(800,300);
                     setTitle("LISTADO DE USUARIOS REGISTRADOS");
             }
         }

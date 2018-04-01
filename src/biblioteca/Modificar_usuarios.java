@@ -181,9 +181,6 @@ public class Modificar_usuarios extends JFrame{
                             probar=false;
                             i=Administrador.personas1;
                         }
-//                        if(!(usuarios.equals(Administrador.usuarios1[1].id))) {
-//                            JOptionPane.showMessageDialog(null,"EL USUARIO NO EXISTE","ERROR",JOptionPane.WARNING_MESSAGE);
-//                        } 
                     }
                     
                     if(probar){

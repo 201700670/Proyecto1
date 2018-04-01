@@ -160,15 +160,6 @@ public class Biblioteca_virtual extends JFrame{
             obusqueda1=busqueda.getText();
             String valorComboBox = "";
             valorComboBox = combo_tipo.getSelectedItem().toString();
-            
-//            combo_tipo.addItem("Autor");
-//        combo_tipo.addItem("Año publicado");
-//        combo_tipo.addItem("Título");
-//        combo_tipo.addItem("Edición");
-//        combo_tipo.addItem("Palabras clave");
-//        combo_tipo.addItem("Descripción");
-//        combo_tipo.addItem("Temas");
-//        combo_tipo.addItem("Tamaño");
             con2=0;con3=0;
             con4=0;con5=0;con6=0;
             con7=0;con8=0;
@@ -236,13 +227,15 @@ public class Biblioteca_virtual extends JFrame{
             }
                 
             if(ae.getSource()==logOut){
-                Cargaindividual obj= new Cargaindividual();
-//                Login obj=new Login();
+//                Cargaindividual obj= new Cargaindividual();
+                Login obj=new Login();
                 obj.setVisible(true);
+                dispose();
             }
             if(ae.getSource()==regresar){
                 Usuarionormal obj=new Usuarionormal();
                 obj.setVisible(true);
+                dispose();
             }
             if(ae.getSource()==ver){
                 verdigitales obj= new verdigitales();

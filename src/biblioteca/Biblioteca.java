@@ -19,7 +19,7 @@ public class Biblioteca {
 //     Administrador frame = new Administrador();
 ////    frame.pack();
 //    frame.setVisible(true);
-        Biblioteca_virtual obj=new Biblioteca_virtual();
+        Prestamosgeneral obj=new Prestamosgeneral();
         obj.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE);//se utiliza para salir por medio del ícono "x"
         obj.setLocationRelativeTo(null);
     }

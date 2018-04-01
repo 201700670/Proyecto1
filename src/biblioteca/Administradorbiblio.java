@@ -7,6 +7,7 @@ package biblioteca;
 
 import static biblioteca.Administrador.personas1;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -44,7 +45,7 @@ public class Administradorbiblio extends JFrame{
         }
 }
     public Administradorbiblio(){
-        
+        setLayout(null);
        for(int i=1;i<personas;i++){
             String[]moslib={ String.valueOf(Administradorbiblio.libros[i].tipo),Administradorbiblio.libros[i].autor, String.valueOf(Administradorbiblio.libros[i].ano), Administradorbiblio.libros[i].titulo, Administradorbiblio.libros[i].descripcion, Administradorbiblio.libros[i].palabras, String.valueOf(Administradorbiblio.libros[i].edicion),Administradorbiblio.libros[i].temas,String.valueOf(Administradorbiblio.libros[i].copias)," "," ",String.valueOf(Administradorbiblio.libros[i].isbn)," ", " "};
             creaciontabla.addRow(moslib);
@@ -62,13 +63,14 @@ public class Administradorbiblio extends JFrame{
             creaciontabla.addRow(moslibdig);
         }
           add(usumos);
-//       usumos.setBounds(0,0,485,300);
-//             usumos.setSize(500, 800);
+       usumos.setBounds(10,0,600,600);
+             usumos.setSize(950, 800);
                 JTable tabla=new JTable(creaciontabla);
                 tabla.setSize(500,500);
+                tabla.setPreferredScrollableViewportSize(new Dimension(900, 200));
                 JScrollPane desplazamiento=new JScrollPane(tabla);
                 usumos.add(desplazamiento,BorderLayout.SOUTH);
-                    setSize(800,550);
+                    setSize(1000,300);
                     setTitle("LISTADO DE BIBLIOTECA");
                     
     }
