@@ -14,6 +14,7 @@ public class Revistas extends Bibliografias{
     int ejemplares;
     int copias;
     int prestamos;
+    int disponibles;
 
     public Revistas(String categoria, int ejemplares, int copias, String autor, int ano, String titulo, int edicion, String palabras, String descripcion, String temas) {
         super(autor, ano, titulo, edicion, palabras, descripcion, temas);
@@ -22,6 +23,7 @@ public class Revistas extends Bibliografias{
         this.copias = copias;
         this.prestamos=0;
         super.tipo=1;
+        disponibles=copias;
     }
     public String mostrar(){
     
@@ -29,17 +31,17 @@ public class Revistas extends Bibliografias{
     }
     
     public void prestar(){
-        copias --;
+        disponibles --;
         prestamos ++;
     }
     
     public void devolver(){
-        copias ++;
+        disponibles ++;
     }
 
     
     public int disponibles(){
-        return copias;
+        return disponibles;
     }
     
     public int prestamos(){

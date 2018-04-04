@@ -20,7 +20,7 @@ import javax.swing.JTextField;
  * @author Andrea Palomo
  */
 public class Agregar extends JFrame {
-    public static Librodigital[]agregados=new Librodigital[10];
+    public static agregarlibro[]agregados=new agregarlibro[10];
     public static int sumandos=1;
     
     private JLabel agr;
@@ -217,13 +217,15 @@ public class Agregar extends JFrame {
                         odescripcion=text_descripcion.getText();
                         otemas=text_temas.getText();
                         tamaño=Integer.parseInt(text_tamaño.getText());
-                        agregados[sumandos]=new Librodigital(tamaño, oautor, oano, otitulo, oedicion, opalabras, odescripcion, otemas);
+                        agregados[sumandos]=new agregarlibro(tamaño, oautor, oano, otitulo, oedicion, opalabras, odescripcion, otemas,Integer.parseInt(Biblioteca.usuarioactual));
+                        
                         for(int persona1=1;persona1<sumandos;persona1++){
                                    while((agregados[sumandos].titulo).equals((agregados[persona1].titulo))){
                                        JOptionPane.showMessageDialog(null,"YA AGREGÓ ESTE LIBRO","ERROR",JOptionPane.WARNING_MESSAGE);
                                        return;
                                    }
-                               }
+                        
+                        }
                         sumandos++;
                         System.out.println(sumandos);
                         dispose();
@@ -234,4 +236,6 @@ public class Agregar extends JFrame {
         }
 
     }
+    
+          
 }

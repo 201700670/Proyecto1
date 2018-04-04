@@ -13,13 +13,14 @@ import javax.swing.JFrame;
  * @author Andrea Palomo
  */
 public class Biblioteca {
-
+        public static String usuarioactual;
     public static void main(String[] args) {
 //        Principal obj=new Principal();
 //     Administrador frame = new Administrador();
 ////    frame.pack();
 //    frame.setVisible(true);
-        Prestamosgeneral obj=new Prestamosgeneral();
+
+        Principal obj=new Principal();
         obj.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE);//se utiliza para salir por medio del ícono "x"
         obj.setLocationRelativeTo(null);
     }

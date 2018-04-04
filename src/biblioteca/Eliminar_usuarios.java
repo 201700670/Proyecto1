@@ -43,7 +43,7 @@ public class Eliminar_usuarios extends JFrame{
     public Eliminar_usuarios(){
         setLayout(null);
         setLocationRelativeTo(null);
-        setTitle("MODIFICAR USUARIOS");
+        setTitle("ELIMINAR USUARIOS");
         Dimension dim = new Dimension(200, 50);
         
         id = new JLabel("ID: ");

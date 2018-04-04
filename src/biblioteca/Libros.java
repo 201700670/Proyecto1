@@ -13,6 +13,7 @@ public class Libros extends Bibliografias{
     int prestamos;
     int isbn;
     int copias;
+    int disponibles;
 
     public Libros(String autor, int ano, String titulo, int edicion, String palabras, String descripcion, String temas, int isbn, int copias) {
         super(autor,ano,titulo,edicion, palabras,descripcion,temas);
@@ -20,23 +21,26 @@ public class Libros extends Bibliografias{
         this.isbn = isbn;
         this.copias = copias;
         super.tipo=0;
+        this.disponibles=copias;
+        
     }
     public String mostrar(){
     
         return ""+tipo+ ";"+super.mostrar()+";"+isbn+";"+copias;
     }
     public void prestar(){
-        copias --;
+        
+        disponibles--;
         prestamos ++;
     }
     
     public void devolver(){
-        copias ++;
+        disponibles ++;
     }
 
     
     public int disponibles(){
-        return copias;
+        return disponibles;
     }
     
     public int prestamos(){

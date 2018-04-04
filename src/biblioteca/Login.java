@@ -33,7 +33,7 @@ public class Login extends JFrame{
     
     private JButton logIn;
     private JButton logOut;
-    private JButton registrarse;
+//    private JButton registrarse;
     
     private ImageIcon imagen;
     
@@ -71,9 +71,9 @@ public class Login extends JFrame{
         logOut.setSize(dim);
         logOut.setBounds(300, 400, 100, 30);
         
-        registrarse = new JButton("Registrarse");
-        registrarse.setSize(dim);
-        registrarse.setBounds(200, 450, 130, 30);
+//        registrarse = new JButton("Registrarse");
+//        registrarse.setSize(dim);
+//        registrarse.setBounds(200, 450, 130, 30);
         
         pnl = new JPanel();
         pnl.setSize(600, 600);
@@ -92,7 +92,7 @@ public class Login extends JFrame{
         add(_psswd);
         add(logIn);
         add(logOut);
-        add(registrarse);
+//        add(registrarse);
         add(pnlicon);
         
         setSize(600,550);
@@ -100,7 +100,7 @@ public class Login extends JFrame{
         Acciones manejo=new Acciones();
         logIn.addActionListener(manejo);
         logOut.addActionListener(manejo);
-        registrarse.addActionListener(manejo);
+//        registrarse.addActionListener(manejo);
     }
     private class Acciones implements ActionListener{
 
@@ -113,10 +113,10 @@ public class Login extends JFrame{
             boolean prueba;
             boolean prueba2;
             boolean prueba3;
-            if(ae.getSource()==registrarse){
-                    Usuario obj1=new Usuario();
-                    obj1.setVisible(true);
-                }
+//            if(ae.getSource()==registrarse){
+//                    Usuario obj1=new Usuario();
+////                    obj1.setVisible(true);
+//                }
                 if(ae.getSource()==logOut){
                     _user.setText(null);
                     _psswd.setText(null);
@@ -134,11 +134,15 @@ public class Login extends JFrame{
                }
                
                
-                for(int i=0;i<Administrador.personas1;i++){
+                for(int i=1;i<Administrador.personas1;i++){
                     
                     while((usuarios12.equals(Administrador.usuarios1[i].id)) && (pasword.equals(Administrador.usuarios1[i].contrasena))){
                         JOptionPane.showMessageDialog(Login.this,"BIENVENIDO","INFORMACION",JOptionPane.INFORMATION_MESSAGE);
-                        //usuarios prestar, devolver reportes
+                        Biblioteca.usuarioactual=Administrador.usuarios1[i].id;
+                        System.out.println(Biblioteca.usuarioactual);
+                        Usuarionormal obj= new Usuarionormal();
+                        obj.setVisible(true);
+                        dispose();
                         return;
                     }
                 }

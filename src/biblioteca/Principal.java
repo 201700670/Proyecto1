@@ -48,7 +48,6 @@ public class Principal extends JFrame{
             setLocationRelativeTo(null);
         Dimension dim = new Dimension(200, 50);
         setTitle("IPC PROYECTO 1");
-        getContentPane().setBackground(Color.LIGHT_GRAY);
         logIn = new JButton("LogIn");
         logIn.setSize(dim);
         logIn.setBounds(400, 70, 100, 30);
@@ -109,6 +108,7 @@ public class Principal extends JFrame{
             if(ae.getSource()==logIn){
                 Login obj=new Login();
                 obj.setVisible(true);
+                dispose();
             }if(ae.getSource()==about){
                 JOptionPane.showMessageDialog(Principal.this,String.format("Esta es una Biblioteca virtual de la"
                         + " Universidad de San Carlos de Guatemala. \n"

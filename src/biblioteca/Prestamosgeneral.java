@@ -49,8 +49,9 @@ public class Prestamosgeneral extends JFrame {
     private JLabel logo;
     
     
-    private String [] encabezado={"Tipo","Autor", "Año", "Título", "Descrip.", "Palabras", "Edicion","Temas","Copias","Área","Categoría","ISBN","Ejemplares"};
-    private Object [][]datos=new Object [0][8];
+    private String [] encabezado={"Tipo","Autor", "Año", "Título", "Descrip.", "Palabras", "Edicion","Temas","Copias","Área","Categoría","ISBN","Ejemplares","Disponibles"};
+    private String [] encabezado1={"Tipo","Autor", "Año", "Título", "Descrip.", "Palabras", "Edicion","Temas","Copias","Área","Categoría","ISBN","Ejemplares"};
+    private Object [][]datos=new Object [0][9];
     private Object [][]datos1=new Object [0][8];
     private JPanel usumos= new JPanel();
     private JPanel usumos1= new JPanel();
@@ -62,7 +63,7 @@ public class Prestamosgeneral extends JFrame {
     DefaultTableModel usuariotaba3;
     
     DefaultTableModel creaciontabla=new DefaultTableModel(datos,encabezado);
-    DefaultTableModel creaciontabla1=new DefaultTableModel(datos1,encabezado);
+    DefaultTableModel creaciontabla1=new DefaultTableModel(datos1,encabezado1);
     DefaultTableModel creaciontabla2=new DefaultTableModel(datos,encabezado);
     DefaultTableModel creaciontabla3=new DefaultTableModel(datos,encabezado);
     DefaultTableModel creaciontabla4=new DefaultTableModel(datos,encabezado);
@@ -172,6 +173,7 @@ public class Prestamosgeneral extends JFrame {
         buscar.addActionListener(manejo);
         regresar.addActionListener(manejo);
         prestar.addActionListener(manejo);
+        ver.addActionListener(manejo);
         
         setSize(800,600);
         setVisible(true);
@@ -199,7 +201,7 @@ public class Prestamosgeneral extends JFrame {
                         if(obusqueda.equals(Administradorbiblio.libros[i].autor)||obusqueda.equals(Administradorbiblio.libros[i].ano)||obusqueda.equals(Administradorbiblio.libros[i].titulo)||obusqueda.equals(Administradorbiblio.libros[i].edicion)||obusqueda.equals(Administradorbiblio.libros[i].palabras)||obusqueda.equals(Administradorbiblio.libros[i].descripcion)||obusqueda.equals(Administradorbiblio.libros[i].temas)||obusqueda.equals(Administradorbiblio.libros[i].copias)||obusqueda.equals(Administradorbiblio.libros[i].isbn)){
                             con1=con1+i;
                             System.out.println(con1);
-                            String[]moslib={ String.valueOf(Administradorbiblio.libros[i].tipo),Administradorbiblio.libros[i].autor, String.valueOf(Administradorbiblio.libros[i].ano), Administradorbiblio.libros[i].titulo, Administradorbiblio.libros[i].descripcion, Administradorbiblio.libros[i].palabras, String.valueOf(Administradorbiblio.libros[i].edicion),Administradorbiblio.libros[i].temas,String.valueOf(Administradorbiblio.libros[i].copias)," "," ",String.valueOf(Administradorbiblio.libros[i].isbn)," ", " "};
+                            String[]moslib={ String.valueOf(Administradorbiblio.libros[i].tipo),Administradorbiblio.libros[i].autor, String.valueOf(Administradorbiblio.libros[i].ano), Administradorbiblio.libros[i].titulo, Administradorbiblio.libros[i].descripcion, Administradorbiblio.libros[i].palabras, String.valueOf(Administradorbiblio.libros[i].edicion),Administradorbiblio.libros[i].temas,String.valueOf(Administradorbiblio.libros[i].copias)," "," ",String.valueOf(Administradorbiblio.libros[i].isbn)," ",String.valueOf(Administradorbiblio.libros[i].disponibles())};
                             creaciontabla.addRow(moslib);
                             add(usumos);
                             usumos.setBounds(55,350,400,200);
@@ -224,7 +226,7 @@ public class Prestamosgeneral extends JFrame {
                         if(obusqueda.equals(Administradorbiblio.revistas[j].autor)||obusqueda.equals(Administradorbiblio.revistas[j].ano)||obusqueda.equals(Administradorbiblio.revistas[j].titulo)||obusqueda.equals(Administradorbiblio.revistas[j].edicion)||obusqueda.equals(Administradorbiblio.revistas[j].palabras)||obusqueda.equals(Administradorbiblio.revistas[j].descripcion)||obusqueda.equals(Administradorbiblio.revistas[j].temas)||obusqueda.equals(Administradorbiblio.revistas[j].copias)||obusqueda.equals(Administradorbiblio.revistas[j].categoria)||obusqueda.equals(Administradorbiblio.revistas[j].ejemplares)){
                             con1=con1+j;
                             System.out.println(con1);
-                            String[]mosrev={String.valueOf(Administradorbiblio.revistas[j].tipo),Administradorbiblio.revistas[j].autor, String.valueOf(Administradorbiblio.revistas[j].ano), Administradorbiblio.revistas[j].titulo, Administradorbiblio.revistas[j].descripcion, Administradorbiblio.revistas[j].palabras, String.valueOf(Administradorbiblio.revistas[j].edicion),Administradorbiblio.revistas[j].temas,String.valueOf(Administradorbiblio.revistas[j].copias)," ",Administradorbiblio.revistas[j].categoria," ",String.valueOf(Administradorbiblio.revistas[j].ejemplares), " "};
+                            String[]mosrev={String.valueOf(Administradorbiblio.revistas[j].tipo),Administradorbiblio.revistas[j].autor, String.valueOf(Administradorbiblio.revistas[j].ano), Administradorbiblio.revistas[j].titulo, Administradorbiblio.revistas[j].descripcion, Administradorbiblio.revistas[j].palabras, String.valueOf(Administradorbiblio.revistas[j].edicion),Administradorbiblio.revistas[j].temas,String.valueOf(Administradorbiblio.revistas[j].copias)," ",Administradorbiblio.revistas[j].categoria," ",String.valueOf(Administradorbiblio.revistas[j].ejemplares),String.valueOf(Administradorbiblio.revistas[j].disponibles())};
                             creaciontabla.addRow(mosrev);
                             add(usumos);
                             usumos.setBounds(55,350,400,200);
@@ -242,13 +244,13 @@ public class Prestamosgeneral extends JFrame {
                     busqueda.setText(null);
                 }
                 ///////////////////////////DATOS DE TESIS EN BUSQUEDA
-                if("Tesis".equals(valorComboBox)){
+                if("Autor".equals(valorComboBox)||"Año publicado".equals(valorComboBox)||"Título".equals(valorComboBox)||"Edición".equals(valorComboBox)||"Palabras clave".equals(valorComboBox)||"Descripción".equals(valorComboBox)||"Temas".equals(valorComboBox)||"Copias".equals(valorComboBox)||"Área".equals(valorComboBox)){
                         for (int k=1;k<Administradorbiblio.personas3;k++){
                         con1=0;
                         if(obusqueda.equals(Administradorbiblio.tesis[k].autor)||obusqueda.equals(Administradorbiblio.tesis[k].ano)||obusqueda.equals(Administradorbiblio.tesis[k].titulo)||obusqueda.equals(Administradorbiblio.tesis[k].edicion)||obusqueda.equals(Administradorbiblio.tesis[k].palabras)||obusqueda.equals(Administradorbiblio.tesis[k].descripcion)||obusqueda.equals(Administradorbiblio.tesis[k].temas)||obusqueda.equals(Administradorbiblio.tesis[k].copias)||obusqueda.equals(Administradorbiblio.tesis[k].area)){
                             con1=con1+k;
                             System.out.println(con1);
-                            String[]moste={String.valueOf(Administradorbiblio.tesis[k].tipo),Administradorbiblio.tesis[k].autor,String.valueOf(Administradorbiblio.tesis[k].ano),Administradorbiblio.tesis[k].titulo, Administradorbiblio.tesis[k].descripcion,Administradorbiblio.tesis[k].palabras,String.valueOf(Administradorbiblio.tesis[k].edicion),Administradorbiblio.tesis[k].temas,String.valueOf(Administradorbiblio.tesis[k].copias),Administradorbiblio.tesis[k].area," "," "," ", " "};
+                            String[]moste={String.valueOf(Administradorbiblio.tesis[k].tipo),Administradorbiblio.tesis[k].autor,String.valueOf(Administradorbiblio.tesis[k].ano),Administradorbiblio.tesis[k].titulo, Administradorbiblio.tesis[k].descripcion,Administradorbiblio.tesis[k].palabras,String.valueOf(Administradorbiblio.tesis[k].edicion),Administradorbiblio.tesis[k].temas,String.valueOf(Administradorbiblio.tesis[k].copias),Administradorbiblio.tesis[k].area," "," "," ",String.valueOf(Administradorbiblio.tesis[k].disponibles())};
                             creaciontabla.addRow(moste);
                             add(usumos);
                             usumos.setBounds(55,350,400,200);
@@ -359,13 +361,18 @@ public class Prestamosgeneral extends JFrame {
             }
                 
             if(ae.getSource()==logOut){
-                Cargaindividual obj= new Cargaindividual();
-//                Login obj=new Login();
+//                Cargaindividual obj= new Cargaindividual();
+                Login obj=new Login();
                 obj.setVisible(true);
-//                dispose();
+                dispose();
             }
             if(ae.getSource()==regresar){
                 Usuarionormal obj=new Usuarionormal();
+                obj.setVisible(true);
+                dispose();
+            }
+            if(ae.getSource()==ver){
+                verprestamos obj=new verprestamos();
                 obj.setVisible(true);
                 dispose();
             }

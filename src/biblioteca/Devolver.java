@@ -5,6 +5,12 @@
  */
 package biblioteca;
 
+import static biblioteca.Prestar.prestados;
+import static biblioteca.Prestar.prestados1;
+import static biblioteca.Prestar.prestados2;
+import static biblioteca.Prestar.restandos;
+import static biblioteca.Prestar.restandos1;
+import static biblioteca.Prestar.restandos2;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,14 +25,7 @@ import javax.swing.JTextField;
  *
  * @author Andrea Palomo
  */
-public class Prestar extends JFrame{
-     public static prestalibros[]prestados=new prestalibros[10];
-     public static prestarrevistas[]prestados1=new prestarrevistas[10];
-     public static prestatesis[]prestados2=new prestatesis[10];
-    public static int restandos=1;
-    public static int restandos1=1;
-    public static int restandos2=1;
-    
+public class Devolver extends JFrame{
     public JLabel autor;
     public JLabel ano;
     public JLabel titulo;
@@ -58,13 +57,13 @@ public class Prestar extends JFrame{
     public JTextField text_tamaño;
     
     public JComboBox combo_tipo;
-    private JButton prestarse;
+    private JButton devolverse;
     private JButton cancel;
     private JButton buscar;
-    public Prestar(){
+    public Devolver(){
         setLayout(null);
         setLocationRelativeTo(null);
-        setTitle("PRESTAR ELEMENTOS DE BIBLIOTECA");
+        setTitle("DEVOLVER BIBLIOGRAFIA");
         Dimension dim = new Dimension(200, 50);
         
         autor = new JLabel("Autor: ");
@@ -115,7 +114,7 @@ public class Prestar extends JFrame{
         ejemplares.setSize(dim);
         ejemplares.setBounds(50,350,300,50);
         
-        agr = new JLabel("COPIE Ó COLOQUE EL TÍTULO Y TIPO DEL ELEMENTO A PRESTAR");
+        agr = new JLabel("COPIE Ó COLOQUE EL TÍTULO Y TIPO DEL ELEMENTO A DEVOLVER");
         agr.setSize(dim);
         agr.setBounds(95,380,500,50);
         
@@ -188,11 +187,10 @@ public class Prestar extends JFrame{
         combo_tipo.addItem("Libro");
         combo_tipo.addItem("Revista");
         combo_tipo.addItem("Tesis");
-        combo_tipo.addItem("Libro digital");
         
-        prestarse = new JButton("Prestar");
-        prestarse.setSize(dim);
-        prestarse.setBounds(130, 460, 100, 30);
+        devolverse = new JButton("Devolver");
+        devolverse.setSize(dim);
+        devolverse.setBounds(130, 460, 100, 30);
         
         buscar = new JButton("Buscar");
         buscar.setSize(dim);
@@ -228,26 +226,25 @@ public class Prestar extends JFrame{
         add(text_isbn);
         add(text_ejemplares);
         add(combo_tipo);
-        add(prestarse);
+        add(devolverse);
         add(cancel);
         add(buscar);
         add(agr);
         
         reacciones manejo=new reacciones();
-        prestarse.addActionListener(manejo);
+        devolverse.addActionListener(manejo);
         cancel.addActionListener(manejo);
         buscar.addActionListener(manejo);
         
         setSize(580,550);
         setVisible(true);
-        
     }
     private class reacciones implements ActionListener{
         String bibliotitulos;
         int contador,contador2,contador3,contador4;
         String oautor,otitulo,odescripcion,opalabras,otemas,oarea,ocategoria;
         int otipo,oano,oedicion,ocopias,oisbn,obejemplares,tamaño;
-        String oejemplares,obisbn;
+        String oejemplares;
         boolean probando=true;
         @Override
         public void actionPerformed(ActionEvent ae) {
@@ -260,27 +257,27 @@ public class Prestar extends JFrame{
                 if("Libro".equals(valorComboBox)){
                     contador=0;
                     bibliotitulos=text_titulo.getText();
-                    for (int i=1;i<Administradorbiblio.personas;i++){
-                        if(bibliotitulos.equals(Administradorbiblio.libros[i].titulo)){
+                    for (int i=1;i<Prestar.restandos;i++){
+                        if(bibliotitulos.equals(Prestar.prestados[i].titulo)){
                             contador=contador+i;
                             System.out.println(contador);
-                        oautor=Administradorbiblio.libros[contador].autor;
+                        oautor=Prestar.prestados[contador].autor;
                         text_autor.setText(oautor);
-                        oano=Administradorbiblio.libros[contador].ano;
+                        oano=Prestar.prestados[contador].ano;
                         text_ano.setText(String.valueOf(oano));
 //                        otitulo=Administradorbiblio.libros[contador].titulo;
 //                        text_titulo.setText(otitulo);
-                        oedicion=Administradorbiblio.libros[contador].edicion;
+                        oedicion=Prestar.prestados[contador].edicion;
                         text_edicion.setText(String.valueOf(oedicion));
-                        opalabras=Administradorbiblio.libros[contador].palabras;
+                        opalabras=Prestar.prestados[contador].palabras;
                         text_palabras.setText(opalabras);
-                        odescripcion=Administradorbiblio.libros[contador].descripcion;
+                        odescripcion=Prestar.prestados[contador].descripcion;
                         text_descripcion.setText(odescripcion);
-                        otemas=Administradorbiblio.libros[contador].temas;
+                        otemas=Prestar.prestados[contador].temas;
                         text_temas.setText(otemas);
-                        oisbn=Administradorbiblio.libros[contador].isbn;
+                        oisbn=Prestar.prestados[contador].isbn;
                         text_isbn.setText(String.valueOf(oisbn));
-                        ocopias=Administradorbiblio.libros[contador].copias;
+                        ocopias=Prestar.prestados[contador].copias;
                         text_copias.setText(String.valueOf(ocopias));
                         probando=false;
                         i=Administradorbiblio.personas;
@@ -294,29 +291,29 @@ public class Prestar extends JFrame{
                 if("Revista".equals(valorComboBox)){
                     contador2=0;
                     bibliotitulos=text_titulo.getText();
-                    for (int i=1;i<Administradorbiblio.personas2;i++){
-                        if(bibliotitulos.equals(Administradorbiblio.revistas[i].titulo)){
+                    for (int i=1;i<Prestar.restandos1;i++){
+                        if(bibliotitulos.equals(Prestar.prestados1[i].titulo)){
                             contador2=contador2+i;
                             System.out.println(contador2);
-                        oautor=Administradorbiblio.revistas[contador2].autor;
+                        oautor=Prestar.prestados1[contador2].autor;
                         text_autor.setText(oautor);
-                        oano=Administradorbiblio.revistas[contador2].ano;
+                        oano=Prestar.prestados1[contador2].ano;
                         text_ano.setText(String.valueOf(oano));
 //                        otitulo=Administradorbiblio.revistas[contador2].titulo;
 //                        text_titulo.setText(otitulo);
-                        oedicion=Administradorbiblio.revistas[contador2].edicion;
+                        oedicion=Prestar.prestados1[contador2].edicion;
                         text_edicion.setText(String.valueOf(oedicion));
-                        opalabras=Administradorbiblio.revistas[contador2].palabras;
+                        opalabras=Prestar.prestados1[contador2].palabras;
                         text_palabras.setText(opalabras);
-                        odescripcion=Administradorbiblio.revistas[contador2].descripcion;
+                        odescripcion=Prestar.prestados1[contador2].descripcion;
                         text_descripcion.setText(odescripcion);
-                        otemas=Administradorbiblio.revistas[contador2].temas;
+                        otemas=Prestar.prestados1[contador2].temas;
                         text_temas.setText(otemas);
-                        ocategoria=Administradorbiblio.revistas[contador2].categoria;
+                        ocategoria=Prestar.prestados1[contador2].categoria;
                         text_categoria.setText((ocategoria));
-                        ocopias=Administradorbiblio.revistas[contador2].copias;
+                        ocopias=Prestar.prestados1[contador2].copias;
                         text_copias.setText(String.valueOf(ocopias));
-                        obejemplares=Administradorbiblio.revistas[contador2].ejemplares;
+                        obejemplares=Prestar.prestados1[contador2].ejemplares;
                         text_ejemplares.setText(String.valueOf(obejemplares));
                         probando=false;
                         i=Administradorbiblio.personas;
@@ -331,27 +328,27 @@ public class Prestar extends JFrame{
                 if("Tesis".equals(valorComboBox)){
                     contador3=0;
                     bibliotitulos=text_titulo.getText();
-                    for (int i=1;i<Administradorbiblio.personas3;i++){
-                        if(bibliotitulos.equals(Administradorbiblio.tesis[i].titulo)){
+                    for (int i=1;i<Prestar.restandos2;i++){
+                        if(bibliotitulos.equals(Prestar.prestados2[i].titulo)){
                             contador3=contador3+i;
                            System.out.println(contador3);
-                        oautor=Administradorbiblio.tesis[contador3].autor;
+                        oautor=Prestar.prestados2[contador3].autor;
                         text_autor.setText(oautor);
-                        oano=Administradorbiblio.tesis[contador3].ano;
+                        oano=Prestar.prestados2[contador3].ano;
                         text_ano.setText(String.valueOf(oano));
 //                        otitulo=Administradorbiblio.tesis[contador3].titulo;
 //                        text_titulo.setText(otitulo);
-                        oedicion=Administradorbiblio.tesis[contador3].edicion;
+                        oedicion=Prestar.prestados2[contador3].edicion;
                         text_edicion.setText(String.valueOf(oedicion));
-                        opalabras=Administradorbiblio.tesis[contador3].palabras;
+                        opalabras=Prestar.prestados2[contador3].palabras;
                         text_palabras.setText(opalabras);
-                        odescripcion=Administradorbiblio.tesis[contador3].descripcion;
+                        odescripcion=Prestar.prestados2[contador3].descripcion;
                         text_descripcion.setText(odescripcion);
-                        otemas=Administradorbiblio.tesis[contador3].temas;
+                        otemas=Prestar.prestados2[contador3].temas;
                         text_temas.setText(otemas);
-                        oarea=Administradorbiblio.tesis[contador3].area;
+                        oarea=Prestar.prestados2[contador3].area;
                         text_area.setText(oarea);
-                        ocopias=Administradorbiblio.tesis[contador3].copias;
+                        ocopias=Prestar.prestados2[contador3].copias;
                         text_copias.setText(String.valueOf(ocopias)); 
                         probando=false;
                         i=Administradorbiblio.personas;
@@ -365,88 +362,116 @@ public class Prestar extends JFrame{
                 
                     
                 }
-            if(ae.getSource()==prestarse){
-                oautor=text_autor.getText();
-                        oano=Integer.parseInt(text_ano.getText());
-                        otitulo=text_titulo.getText();
-                        oedicion=Integer.parseInt(text_edicion.getText());
-                        opalabras=text_palabras.getText();
-                        odescripcion=text_descripcion.getText();
-                        otemas=text_temas.getText();
-                        obisbn=text_isbn.getText();
-                        ocategoria=text_categoria.getText();
-                        oejemplares=text_ejemplares.getText();
-                        oarea=text_area.getText();
+            if(ae.getSource()==devolverse){
                         
                         
                 if("Libro".equals(valorComboBox)){
-                    if(Administradorbiblio.libros[contador].disponibles()>0){
-                    Administradorbiblio.libros[contador].prestar();
-                        System.out.println("accionprestar"+(Administradorbiblio.libros[contador].disponibles()));
-                    ocopias=Integer.parseInt(text_copias.getText());
-                    prestados[restandos]=new prestalibros(oautor,oano, otitulo, oedicion, opalabras, odescripcion, otemas,oisbn, ocopias,Integer.parseInt(Biblioteca.usuarioactual));
-                   for(int persona1=1;persona1<restandos;persona1++){
-                       
-                                   if(((otitulo).equals((prestados[persona1].titulo)))&&String.valueOf(prestados[persona1].id).equals(String.valueOf(Biblioteca.usuarioactual))){
-                                       JOptionPane.showMessageDialog(null,"ESTE LIBRO YA SE PRESTÓ, INTENTE CON OTRO","ERROR",JOptionPane.WARNING_MESSAGE);
-                                       return;
+                    for(int persona=1;persona<Prestar.restandos;persona++){
+                       if(String.valueOf(Prestar.prestados[persona].id).equals(String.valueOf(Biblioteca.usuarioactual))){
+                                       
+                    Administradorbiblio.libros[contador].devolver();
+                        text_autor.setText(null);
+                        oautor=text_autor.getText();
+                        Prestar.prestados[contador].autor=oautor;
+                        text_ano.setText("0");
+                        oano=Integer.parseInt(text_ano.getText());
+                        Prestar.prestados[contador].ano=oano;
+                        text_titulo.setText(null);
+                        otitulo=text_titulo.getText();
+                        Prestar.prestados[contador].titulo=otitulo;
+                        text_edicion.setText("0");
+                        oedicion=Integer.parseInt(text_edicion.getText());
+                        Prestar.prestados[contador].edicion=oedicion;
+                        text_palabras.setText(null);
+                        opalabras=text_palabras.getText();
+                        Prestar.prestados[contador].palabras=opalabras;
+                        text_descripcion.setText(null);
+                        odescripcion=text_descripcion.getText();
+                        Prestar.prestados[contador].descripcion=odescripcion;
+                        text_temas.setText(null);
+                        otemas=text_temas.getText();
+                        Prestar.prestados[contador].temas=otemas;
+                        text_copias.setText("0");
+                        ocopias=Integer.parseInt(text_copias.getText());
+                        Prestar.prestados[contador].copias=ocopias;
+                        text_isbn.setText("0");
+                        oisbn=Integer.parseInt(text_isbn.getText());
+                        Prestar.prestados[contador].isbn=oisbn;
                                    }
-                               }
-                    restandos++;
-                    
-                    System.out.println(restandos);
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(null,"NO HAY DISPONIBLES POR EL MOMENTO","ERROR",JOptionPane.WARNING_MESSAGE);
                     }
                 }
                 if("Revista".equals(valorComboBox)){
-                    if(Administradorbiblio.revistas[contador2].disponibles()>0){
-                    Administradorbiblio.revistas[contador2].prestar();
-                    ocopias=Integer.parseInt(text_copias.getText());
-                    prestados1[restandos1]=new prestarrevistas(ocategoria, obejemplares,ocopias, oautor, oano, otitulo, oedicion, opalabras, odescripcion, otemas,Integer.parseInt(Biblioteca.usuarioactual));
-                    for(int persona=1;persona<restandos1;persona++){
-                                   if(((otitulo).equals((prestados1[persona].titulo)))&&String.valueOf(prestados1[persona].id).equals(String.valueOf(Biblioteca.usuarioactual))){
-                                       JOptionPane.showMessageDialog(null,"ESTA REVISTA YA SE PRESTÓ, INTENTE CON OTRO","ERROR",JOptionPane.WARNING_MESSAGE);
-                                       return;
-                                   }
-                               }
-                    restandos1++;
-                   
-                    System.out.println(restandos1);
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(null,"NO HAY DISPONIBLES POR EL MOMENTO","ERROR",JOptionPane.WARNING_MESSAGE);
-                    }
+                    
+                    Administradorbiblio.revistas[contador2].devolver();
+                        text_autor.setText(null);
+                        oautor=text_autor.getText();
+                        Prestar.prestados1[contador2].autor=oautor;
+                        text_ano.setText("0");
+                        oano=Integer.parseInt(text_ano.getText());
+                        Prestar.prestados1[contador2].ano=oano;
+                        text_titulo.setText(null);
+                        otitulo=text_titulo.getText();
+                        Prestar.prestados1[contador2].titulo=otitulo;
+                        text_edicion.setText("0");
+                        oedicion=Integer.parseInt(text_edicion.getText());
+                        Prestar.prestados1[contador2].edicion=oedicion;
+                        text_palabras.setText(null);
+                        opalabras=text_palabras.getText();
+                        Prestar.prestados1[contador2].palabras=opalabras;
+                        text_descripcion.setText(null);
+                        odescripcion=text_descripcion.getText();
+                        Prestar.prestados1[contador2].descripcion=odescripcion;
+                        text_temas.setText(null);
+                        otemas=text_temas.getText();
+                        Prestar.prestados1[contador2].temas=otemas;
+                        text_copias.setText("0");
+                        ocopias=Integer.parseInt(text_copias.getText());
+                        Prestar.prestados1[contador2].copias=ocopias;
+                        text_categoria.setText(null);
+                        ocategoria=text_categoria.getText();
+                        Prestar.prestados1[contador2].categoria=ocategoria;
+                        text_ejemplares.setText("0");
+                        obejemplares=Integer.parseInt(text_ejemplares.getText());
+                        Prestar.prestados1[contador2].ejemplares=obejemplares;
+                        
                 }
                 if("Tesis".equals(valorComboBox)){
-                    if(Administradorbiblio.tesis[contador3].disponibles()>0){
-                    Administradorbiblio.tesis[contador3].prestar();
-                    ocopias=Integer.parseInt(text_copias.getText());
-                    prestados2[restandos2]=new prestatesis(oarea, ocopias, oautor,oano, otitulo, oedicion, opalabras, odescripcion, otemas,Integer.parseInt(Biblioteca.usuarioactual));
-                    for(int persona=1;persona<restandos2;persona++){
-                                   if(((otitulo).equals((prestados2[persona].titulo)))&&String.valueOf(prestados2[persona].id).equals(String.valueOf(Biblioteca.usuarioactual))){
-                                       JOptionPane.showMessageDialog(null,"ESTA TESIS YA SE PRESTÓ, INTENTE CON OTRO","ERROR",JOptionPane.WARNING_MESSAGE);
-                                       return;
-                                   }
-                               }
-                    restandos2++;
+                    
+                    Administradorbiblio.tesis[contador3].devolver();
+                        text_autor.setText(null);
+                        oautor=text_autor.getText();
+                        Prestar.prestados2[contador3].autor=oautor;
+                        text_ano.setText("0");
+                        oano=Integer.parseInt(text_ano.getText());
+                        Prestar.prestados2[contador3].ano=oano;
+                        text_titulo.setText(null);
+                        otitulo=text_titulo.getText();
+                        Prestar.prestados2[contador3].titulo=otitulo;
+                        text_edicion.setText("0");
+                        oedicion=Integer.parseInt(text_edicion.getText());
+                        Prestar.prestados2[contador3].edicion=oedicion;
+                        text_palabras.setText(null);
+                        opalabras=text_palabras.getText();
+                        Prestar.prestados2[contador3].palabras=opalabras;
+                        text_descripcion.setText(null);
+                        odescripcion=text_descripcion.getText();
+                        Prestar.prestados2[contador3].descripcion=odescripcion;
+                        text_temas.setText(null);
+                        otemas=text_temas.getText();
+                        Prestar.prestados2[contador3].temas=otemas;
+                        text_copias.setText("0");
+                        ocopias=Integer.parseInt(text_copias.getText());
+                        Prestar.prestados2[contador3].copias=ocopias;
+                        text_area.setText(null);
+                        oarea=text_area.getText();
+                        Prestar.prestados2[contador3].area=oarea;
                         
-                    System.out.println(restandos2);
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(null,"NO HAY DISPONIBLES POR EL MOMENTO","ERROR",JOptionPane.WARNING_MESSAGE);
-                    }
                 }
-                        dispose();
+                      dispose();  
             }
             if(ae.getSource()==cancel){
                 dispose();
             }
         }
-       
-        
-    
     }
-            
 }

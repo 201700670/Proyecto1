@@ -13,6 +13,7 @@ public class Tesis extends Bibliografias {
     String area;
     int copias;
     int prestamos;
+    int disponibles;
 
     public Tesis(String area, int copias, String autor, int ano, String titulo, int edicion, String palabras, String descripcion, String temas) {
         super(autor, ano, titulo, edicion, palabras, descripcion, temas);
@@ -20,6 +21,7 @@ public class Tesis extends Bibliografias {
         this.copias = copias;
         this.prestamos = 0;
         super.tipo=2;
+        disponibles=copias;
     }
     public String mostrar(){
     
@@ -107,17 +109,17 @@ public class Tesis extends Bibliografias {
     }
     
     public void prestar(){
-        copias --;
+        disponibles --;
         prestamos ++;
     }
     
     public void devolver(){
-        copias ++;
+        disponibles ++;
     }
 
     
     public int disponibles(){
-        return copias;
+        return disponibles;
     }
     
     public int prestamos(){

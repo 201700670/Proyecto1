@@ -16,7 +16,10 @@ public class Datosusuario  {
     String rol;
     String id;
     String contrasena;
-
+    public String[][]prestamos=new String[2][10];
+    public int filaprestamos=0;
+    public String[][]agregados=new String[8][10];
+    public int filaagregados=0;
     
     public Datosusuario(String nombre, String apellido, String usuario, String rol, String id, String contrasena) {
         this.nombre = nombre;
@@ -25,6 +28,18 @@ public class Datosusuario  {
         this.rol = rol;
         this.id = id;
         this.contrasena = contrasena;
+        
+        for(int i = 0; i<2; i++){
+            for(int j = 0; j<10; j++){
+                prestamos[i][j] = "";
+            }
+        }
+        for(int i = 0; i<2; i++){
+            for(int j = 0; j<10; j++){
+                agregados[i][j] = "";
+            }
+        }
+        
     }
 
     public String getNombre() {

@@ -35,13 +35,19 @@ public class Administrador extends JFrame {
     DefaultTableModel usuariotabal;
     
     DefaultTableModel creaciontabla=new DefaultTableModel(datos,encabezado);
- 
+    public void contadores(){
+        for(int i = 0; i<usuarios1.length; i++){
+            usuarios1[i] = new Datosusuario("","","","","","");
+        }
+    }
     public Administrador(){
         
         for(int i=1;i<personas1;i++){
             String[]mosusu={String.valueOf(i),Administrador.usuarios1[i].id, Administrador.usuarios1[i].nombre,Administrador.usuarios1[i].apellido, Administrador.usuarios1[i].usuario, Administrador.usuarios1[i].rol,Administrador.usuarios1[i].contrasena};
             creaciontabla.addRow(mosusu);
         }
+        
+        
         
           add(usumos);
           usumos.setBounds(10,0,600,600);

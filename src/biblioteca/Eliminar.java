@@ -40,13 +40,13 @@ public class Eliminar extends JFrame{
     private JTextField text_temas;
     private JTextField text_tamaño;
     
-    private JButton eliminarse;
+    public static JButton eliminarse;
     private JButton cancel;
     private JButton buscar;
     public Eliminar(){
         setLayout(null);
         setLocationRelativeTo(null);
-        setTitle("CARGA INDIVIDUAL");
+        setTitle("ELIMINAR LIBROS DIGITALES");
         Dimension dim = new Dimension(200, 50);
         
         agr = new JLabel("COPIE Ó COLOQUE EL TÍTULO DEL LIBRO QUE DESEA ELIMINAR DE SU CUENTA");
@@ -181,7 +181,7 @@ public class Eliminar extends JFrame{
                     for (int i=1;i<Agregar.sumandos;i++){
                         if(bibliotitulos.equals(Agregar.agregados[i].titulo)){
                             contador4=contador4+i;
-                        System.out.println(contador4);
+                        System.out.println(contador4+"prueba");
                         oautor=Agregar.agregados[contador4].autor;
                         text_autor.setText(oautor);
                         oano=Agregar.agregados[contador4].ano;
@@ -232,6 +232,9 @@ public class Eliminar extends JFrame{
                         tamaño=Integer.parseInt(text_tamaño.getText());
                         Agregar.agregados[contador4].tamaño=tamaño;
                         dispose();
+            }
+            if(ae.getSource()==cancel){
+                dispose();
             }
         }
 

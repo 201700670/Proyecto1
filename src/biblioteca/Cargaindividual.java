@@ -248,8 +248,11 @@ public class Cargaindividual extends JFrame{
             valorComboBox = combo_tipo.getSelectedItem().toString();
             if(ae.getSource()==cargar){
                 
+                
                 if("Libro".equals(valorComboBox)){
-                    
+                    if("".equals(oautor)||"".equals(oano)||"".equals(otitulo)||"".equals(oedicion)||"".equals(odescripcion)||"".equals(opalabras)||"".equals(otemas)||"".equals(ocopias)||"".equals(oisbn)){
+                                    JOptionPane.showMessageDialog(null,"DEBE LLENAR TODOS LOS CAMPOS CORRESPONDIENTES A LIBRO","ERROR",JOptionPane.WARNING_MESSAGE);
+                                }else{
                     Administradorbiblio.libros[Administradorbiblio.personas]=new Libros(oautor,Integer.parseInt(oano), otitulo, Integer.parseInt(oedicion), opalabras, odescripcion, otemas, Integer.parseInt(oisbn), Integer.parseInt(ocopias));
                    for(int persona1=1;persona1<Administradorbiblio.personas;persona1++){
                                    while((Administradorbiblio.libros[Administradorbiblio.personas].titulo).equals((Administradorbiblio.libros[persona1].titulo))){
@@ -259,8 +262,27 @@ public class Cargaindividual extends JFrame{
                                }
                     Administradorbiblio.personas++;
                     System.out.println(Administradorbiblio.personas);
+                     JOptionPane.showMessageDialog(Cargaindividual.this,"ELEMENTO AGREGADO A LA BIBLIOGRAFIA","INFORMACION",JOptionPane.INFORMATION_MESSAGE);
+                    text_autor.setText("");
+                text_titulo.setText("");
+                text_descripcion.setText("");
+                text_palabras.setText("");
+                text_temas.setText("");
+                text_area.setText("");
+                text_categoria.setText("");
+                text_ano.setText("");
+                text_copias.setText("");
+                text_isbn.setText("");
+                text_ejemplares.setText("");
+                text_tamaño.setText("");
+                text_edicion.setText("");        
+                    }
+                    
                 }
                 if("Revista".equals(valorComboBox)){
+                    if("".equals(oautor)||"".equals(oano)||"".equals(otitulo)||"".equals(oedicion)||"".equals(odescripcion)||"".equals(opalabras)||"".equals(otemas)||"".equals(ocopias)||"".equals(ocategoria)||"".equals(obejemplares)){
+                                    JOptionPane.showMessageDialog(null,"DEBE LLENAR TODOS LOS CAMPOS CORRESPONDIENTES A REVISTAS","ERROR",JOptionPane.WARNING_MESSAGE);
+                                }else{
                     Administradorbiblio.revistas[Administradorbiblio.personas2]=new Revistas(ocategoria, Integer.parseInt(obejemplares),Integer.parseInt(ocopias), oautor, Integer.parseInt(oano), otitulo, Integer.parseInt(oedicion), opalabras, odescripcion, otemas);
                     for(int persona=1;persona<Administradorbiblio.personas2;persona++){
                                    while((Administradorbiblio.revistas[Administradorbiblio.personas2].titulo).equals((Administradorbiblio.revistas[persona].titulo))){
@@ -270,30 +292,8 @@ public class Cargaindividual extends JFrame{
                                }
                     Administradorbiblio.personas2++;
                     System.out.println(Administradorbiblio.personas2);
-                }
-                if("Tesis".equals(valorComboBox)){
-                    Administradorbiblio.tesis[Administradorbiblio.personas3]=new Tesis(oarea, Integer.parseInt(ocopias), oautor,Integer.parseInt(oano), otitulo, Integer.parseInt(oedicion), opalabras, odescripcion, otemas);
-                    for(int persona=1;persona<Administradorbiblio.personas3;persona++){
-                                   while((Administradorbiblio.tesis[Administradorbiblio.personas3].titulo).equals((Administradorbiblio.tesis[persona].titulo))){
-                                       JOptionPane.showMessageDialog(Cargaindividual.this,"ESTE TITULO YA EXISTE, CAMBIARLO","ERROR",JOptionPane.WARNING_MESSAGE);
-                                       return;
-                                   }
-                               }
-                    Administradorbiblio.personas3++;
-                    System.out.println(Administradorbiblio.personas3);
-                }
-                if("Libro digital".equals(valorComboBox)){
-                    Administradorbiblio.librodigital[Administradorbiblio.personas4]=new Librodigital(Integer.parseInt(tamaño), oautor,Integer.parseInt(oano), otitulo, Integer.parseInt(oedicion), opalabras, odescripcion, otemas);
-                    for(int persona=1;persona<Administradorbiblio.personas4;persona++){
-                                   while((Administradorbiblio.librodigital[Administradorbiblio.personas4].titulo).equals((Administradorbiblio.librodigital[persona].titulo))){
-                                       JOptionPane.showMessageDialog(Cargaindividual.this,"ESTE TITULO YA EXISTE, CAMBIARLO","ERROR",JOptionPane.WARNING_MESSAGE);
-                                       return;
-                                   }
-                               }
-                    Administradorbiblio.personas4++;
-                    System.out.println(Administradorbiblio.personas4);
-                }
-                text_autor.setText("");
+                    JOptionPane.showMessageDialog(Cargaindividual.this,"ELEMENTO AGREGADO A LA BIBLIOGRAFIA","INFORMACION",JOptionPane.INFORMATION_MESSAGE);
+                            text_autor.setText("");
                 text_titulo.setText("");
                 text_descripcion.setText("");
                 text_palabras.setText("");
@@ -306,9 +306,69 @@ public class Cargaindividual extends JFrame{
                 text_ejemplares.setText("");
                 text_tamaño.setText("");
                 text_edicion.setText("");
+                    }
+                }
+                if("Tesis".equals(valorComboBox)){
+                    if("".equals(oautor)||"".equals(oano)||"".equals(otitulo)||"".equals(oedicion)||"".equals(odescripcion)||"".equals(opalabras)||"".equals(otemas)||"".equals(ocopias)||"".equals(oarea)){
+                                    JOptionPane.showMessageDialog(null,"DEBE LLENAR TODOS LOS CAMPOS CORRESPONDIENTES A TESIS","ERROR",JOptionPane.WARNING_MESSAGE);
+                                }else{
+                    Administradorbiblio.tesis[Administradorbiblio.personas3]=new Tesis(oarea, Integer.parseInt(ocopias), oautor,Integer.parseInt(oano), otitulo, Integer.parseInt(oedicion), opalabras, odescripcion, otemas);
+                    for(int persona=1;persona<Administradorbiblio.personas3;persona++){
+                                   while((Administradorbiblio.tesis[Administradorbiblio.personas3].titulo).equals((Administradorbiblio.tesis[persona].titulo))){
+                                       JOptionPane.showMessageDialog(Cargaindividual.this,"ESTE TITULO YA EXISTE, CAMBIARLO","ERROR",JOptionPane.WARNING_MESSAGE);
+                                       return;
+                                   }
+                               }
+                    Administradorbiblio.personas3++;
+                    System.out.println(Administradorbiblio.personas3);
+                    JOptionPane.showMessageDialog(Cargaindividual.this,"ELEMENTO AGREGADO A LA BIBLIOGRAFIA","INFORMACION",JOptionPane.INFORMATION_MESSAGE);
+                            text_autor.setText("");
+                text_titulo.setText("");
+                text_descripcion.setText("");
+                text_palabras.setText("");
+                text_temas.setText("");
+                text_area.setText("");
+                text_categoria.setText("");
+                text_ano.setText("");
+                text_copias.setText("");
+                text_isbn.setText("");
+                text_ejemplares.setText("");
+                text_tamaño.setText("");
+                text_edicion.setText("");
+                    }
+                }
+                if("Libro digital".equals(valorComboBox)){
+                    if("".equals(oautor)||"".equals(oano)||"".equals(otitulo)||"".equals(oedicion)||"".equals(odescripcion)||"".equals(opalabras)||"".equals(otemas)||"".equals(tamaño)){
+                                    JOptionPane.showMessageDialog(null,"DEBE LLENAR TODOS LOS CAMPOS CORRESPONDIENTES A LIBROS DIGITALES","ERROR",JOptionPane.WARNING_MESSAGE);
+                                }else{
+                    Administradorbiblio.librodigital[Administradorbiblio.personas4]=new Librodigital(Integer.parseInt(tamaño), oautor,Integer.parseInt(oano), otitulo, Integer.parseInt(oedicion), opalabras, odescripcion, otemas);
+                    for(int persona=1;persona<Administradorbiblio.personas4;persona++){
+                                   while((Administradorbiblio.librodigital[Administradorbiblio.personas4].titulo).equals((Administradorbiblio.librodigital[persona].titulo))){
+                                       JOptionPane.showMessageDialog(Cargaindividual.this,"ESTE TITULO YA EXISTE, CAMBIARLO","ERROR",JOptionPane.WARNING_MESSAGE);
+                                       return;
+                                   }
+                               }
+                    Administradorbiblio.personas4++;
+                    System.out.println(Administradorbiblio.personas4);
+                    JOptionPane.showMessageDialog(Cargaindividual.this,"ELEMENTO AGREGADO A LA BIBLIOGRAFIA","INFORMACION",JOptionPane.INFORMATION_MESSAGE);
+                    text_autor.setText("");
+                text_titulo.setText("");
+                text_descripcion.setText("");
+                text_palabras.setText("");
+                text_temas.setText("");
+                text_area.setText("");
+                text_categoria.setText("");
+                text_ano.setText("");
+                text_copias.setText("");
+                text_isbn.setText("");
+                text_ejemplares.setText("");
+                text_tamaño.setText("");
+                text_edicion.setText("");        
+                    }
+                }
                 
-                               JOptionPane.showMessageDialog(Cargaindividual.this,"ELEMENTO AGREGADO A LA BIBLIOGRAFIA","INFORMACION",JOptionPane.INFORMATION_MESSAGE);
-            }
+                
+                              }
             if(ae.getSource()==cancel){
                 dispose();
             }

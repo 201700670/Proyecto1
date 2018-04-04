@@ -39,7 +39,7 @@ public class Usuarionormal extends JFrame{
     public Usuarionormal(){
         setLayout(null);
         setLocationRelativeTo(null);
-        setTitle("LOGIN");
+        setTitle("USUARIO NORMAL");
         Dimension dim = new Dimension(200, 50);
         Dimension dim2 = new Dimension(400, 50);
         
@@ -107,15 +107,18 @@ public class Usuarionormal extends JFrame{
             if(ae.getSource()==logIn){
                 Biblioteca_virtual obj=new Biblioteca_virtual();
                 obj.setVisible(true);
+                dispose();
             }
             if(ae.getSource()==logOut){
-                Principal obj=new Principal();
+                Login obj=new Login();
                 obj.setVisible(true);
+                dispose();
                 
             }
             if(ae.getSource()==registrarse){
                 Prestamosgeneral obj=new Prestamosgeneral();
                 obj.setVisible(true);
+                dispose();
             }
         }
     }

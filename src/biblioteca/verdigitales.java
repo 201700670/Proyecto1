@@ -28,14 +28,17 @@ public class verdigitales extends JFrame{
     private JButton eliminar;
     private JButton regresar;
     private JButton Logout;
+    private int contado;
     DefaultTableModel creaciontabla=new DefaultTableModel(datos,encabezado);
     public verdigitales(){
         for(int l=1;l<Agregar.sumandos;l++){
-            String[]moslibdig={String.valueOf(l),Agregar.agregados[l].autor,String.valueOf(Agregar.agregados[l].ano),Agregar.agregados[l].titulo,Agregar.agregados[l].descripcion,Agregar.agregados[l].palabras,String.valueOf(Agregar.agregados[l].edicion),Agregar.agregados[l].temas,String.valueOf(Agregar.agregados[l].tamaño)};
+            if((String.valueOf(Agregar.agregados[l].id)).equals(Biblioteca.usuarioactual)&&!("").equals(Agregar.agregados[l].autor)){
+            String[]moslibdig={String.valueOf(l),Agregar.agregados[l].autor,String.valueOf(Agregar.agregados[l].ano),
+                Agregar.agregados[l].titulo,Agregar.agregados[l].descripcion,Agregar.agregados[l].palabras,
+                String.valueOf(Agregar.agregados[l].edicion),Agregar.agregados[l].temas,
+                String.valueOf(Agregar.agregados[l].tamaño),String.valueOf(Agregar.agregados[l].id)};
             creaciontabla.addRow(moslibdig);
-            if(Agregar.agregados[l].tamaño==0){
-               creaciontabla.removeRow(1);
-            }
+        }
         }
           add(usumos);
           usumos.setBounds(0,0,485,500);
@@ -81,7 +84,7 @@ public class verdigitales extends JFrame{
                 dispose();
             }
             if(ae.getSource()==Logout){
-                Principal obj= new Principal();
+                Login obj= new Login();
                 obj.setVisible(true);
                 dispose();
             }
