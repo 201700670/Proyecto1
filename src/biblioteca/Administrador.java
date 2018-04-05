@@ -43,8 +43,10 @@ public class Administrador extends JFrame {
     public Administrador(){
         
         for(int i=1;i<personas1;i++){
+            if(!("").equals(Administrador.usuarios1[i].nombre)){
             String[]mosusu={String.valueOf(i),Administrador.usuarios1[i].id, Administrador.usuarios1[i].nombre,Administrador.usuarios1[i].apellido, Administrador.usuarios1[i].usuario, Administrador.usuarios1[i].rol,Administrador.usuarios1[i].contrasena};
             creaciontabla.addRow(mosusu);
+            }
         }
         
         

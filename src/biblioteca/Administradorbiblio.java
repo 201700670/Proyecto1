@@ -43,24 +43,35 @@ public class Administradorbiblio extends JFrame{
         for(int k=0; k<tesis.length;k++){
             tesis [k] = null;
         }
+        for(int k=0; k<librodigital.length;k++){
+            librodigital [k] = null;
+        }
 }
     public Administradorbiblio(){
         setLayout(null);
        for(int i=1;i<personas;i++){
+           if(!("").equals(Administradorbiblio.libros[i].autor)){
             String[]moslib={ String.valueOf(Administradorbiblio.libros[i].tipo),Administradorbiblio.libros[i].autor, String.valueOf(Administradorbiblio.libros[i].ano), Administradorbiblio.libros[i].titulo, Administradorbiblio.libros[i].descripcion, Administradorbiblio.libros[i].palabras, String.valueOf(Administradorbiblio.libros[i].edicion),Administradorbiblio.libros[i].temas,String.valueOf(Administradorbiblio.libros[i].copias)," "," ",String.valueOf(Administradorbiblio.libros[i].isbn)," ", " "};
             creaciontabla.addRow(moslib);
+           }
         }
         for(int j=1;j<personas2;j++){
+            if(!("").equals(Administradorbiblio.revistas[j].autor)){
             String[]mosrev={String.valueOf(Administradorbiblio.revistas[j].tipo),Administradorbiblio.revistas[j].autor, String.valueOf(Administradorbiblio.revistas[j].ano), Administradorbiblio.revistas[j].titulo, Administradorbiblio.revistas[j].descripcion, Administradorbiblio.revistas[j].palabras, String.valueOf(Administradorbiblio.revistas[j].edicion),Administradorbiblio.revistas[j].temas,String.valueOf(Administradorbiblio.revistas[j].copias)," ",Administradorbiblio.revistas[j].categoria," ",String.valueOf(Administradorbiblio.revistas[j].ejemplares), " "};
             creaciontabla.addRow(mosrev);
+            }
         }
         for(int k=1;k<personas3;k++){
+            if(!("").equals(Administradorbiblio.tesis[k].autor)){
             String[]moste={String.valueOf(Administradorbiblio.tesis[k].tipo),Administradorbiblio.tesis[k].autor,String.valueOf(Administradorbiblio.tesis[k].ano),Administradorbiblio.tesis[k].titulo, Administradorbiblio.tesis[k].descripcion,Administradorbiblio.tesis[k].palabras,String.valueOf(Administradorbiblio.tesis[k].edicion),Administradorbiblio.tesis[k].temas,String.valueOf(Administradorbiblio.tesis[k].copias),Administradorbiblio.tesis[k].area," "," "," ", " "};
             creaciontabla.addRow(moste);
+            }
         }
         for(int l=1;l<personas4;l++){
+            if(!("").equals(Administradorbiblio.librodigital[l].autor)){
             String[]moslibdig={" ",Administradorbiblio.librodigital[l].autor,String.valueOf(Administradorbiblio.librodigital[l].ano),Administradorbiblio.librodigital[l].titulo,Administradorbiblio.librodigital[l].descripcion,Administradorbiblio.librodigital[l].palabras,String.valueOf(Administradorbiblio.librodigital[l].edicion),Administradorbiblio.librodigital[l].temas," "," "," "," "," ",String.valueOf(Administradorbiblio.librodigital[l].tamaño)};
             creaciontabla.addRow(moslibdig);
+            }
         }
           add(usumos);
        usumos.setBounds(10,0,600,600);

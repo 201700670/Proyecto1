@@ -37,6 +37,7 @@ public class Revistas extends Bibliografias{
     
     public void devolver(){
         disponibles ++;
+        prestamos--;
     }
 
     

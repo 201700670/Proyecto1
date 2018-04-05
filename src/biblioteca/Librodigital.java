@@ -15,6 +15,12 @@ public class Librodigital extends Bibliografias{
     public Librodigital(int tamaño, String autor, int ano, String titulo, int edicion, String palabras, String descripcion, String temas) {
         super(autor, ano, titulo, edicion, palabras, descripcion, temas);
         this.tamaño = tamaño;
+        super.tipo=3;
+    }
+    
+    public String mostrar(){
+    
+        return "Libro digital;"+super.mostrar()+";"+tamaño;
     }
 
     public int getTamaño() {

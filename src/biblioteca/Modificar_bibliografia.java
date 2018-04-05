@@ -386,6 +386,9 @@ public class Modificar_bibliografia extends JFrame{
             if(ae.getSource()==modificar){
                 ////////////////LIBRO
                 if("Libro".equals(valorComboBox)){
+                    if("".equals(otitulo)){
+                    JOptionPane.showMessageDialog(null,"LLENAR LA CASILLA, INTENTE DE NUEVO","ERROR",JOptionPane.WARNING_MESSAGE);
+                }else{
                         oautor=text_autor.getText();
                         Administradorbiblio.libros[contador].autor=oautor;
                         
@@ -412,6 +415,7 @@ public class Modificar_bibliografia extends JFrame{
                         
                         ocopias=Integer.parseInt(text_copias.getText());
                         Administradorbiblio.libros[contador].copias=ocopias;
+                    }
                 } 
 //                else if(!"Libro".equals(valorComboBox)){
 //                    JOptionPane.showMessageDialog(null,"NO ES DEL MISMO TIPO EN LA BIBLIOGRAFIA","ERROR",JOptionPane.WARNING_MESSAGE);
@@ -419,6 +423,9 @@ public class Modificar_bibliografia extends JFrame{
                     
                 ////////////////REVISTA
                 if("Revista".equals(valorComboBox)){
+                    if("".equals(otitulo)){
+                    JOptionPane.showMessageDialog(null,"LLENAR LA CASILLA, INTENTE DE NUEVO","ERROR",JOptionPane.WARNING_MESSAGE);
+                }else{
                         oautor=text_autor.getText();
                         Administradorbiblio.revistas[contador2].autor=oautor;
                         
@@ -448,12 +455,16 @@ public class Modificar_bibliografia extends JFrame{
                         
                         obejemplares=Integer.parseInt(text_ejemplares.getText());
                         Administradorbiblio.revistas[contador2].ejemplares=obejemplares;
+                    }
                 }
 //                else if(!"Revista".equals(valorComboBox)){
 //                    JOptionPane.showMessageDialog(null,"NO ES DEL MISMO TIPO EN LA BIBLIOGRAFIA","ERROR",JOptionPane.WARNING_MESSAGE);
 //                }
                 ////////////////TESIS
                 if("Tesis".equals(valorComboBox)){
+                    if("".equals(otitulo)){
+                    JOptionPane.showMessageDialog(null,"LLENAR LA CASILLA, INTENTE DE NUEVO","ERROR",JOptionPane.WARNING_MESSAGE);
+                }else{
                         oautor=text_autor.getText();
                         Administradorbiblio.tesis[contador3].autor=oautor;
                         
@@ -480,12 +491,16 @@ public class Modificar_bibliografia extends JFrame{
                         
                         ocopias=Integer.parseInt(text_copias.getText());
                         Administradorbiblio.tesis[contador3].copias=ocopias;
+                    }
                 }
 //                else if(!"Tesis".equals(valorComboBox)){
 //                    JOptionPane.showMessageDialog(null,"NO ES DEL MISMO TIPO EN LA BIBLIOGRAFIA","ERROR",JOptionPane.WARNING_MESSAGE);
 //                }
                 //////////////////////LIBROS DIGITALES
                 if("Libro digital".equals(valorComboBox)){
+                    if("".equals(otitulo)){
+                    JOptionPane.showMessageDialog(null,"LLENAR LA CASILLA, INTENTE DE NUEVO","ERROR",JOptionPane.WARNING_MESSAGE);
+                }else{
                     System.out.println(contador4);
                         oautor=text_autor.getText();
                         Administradorbiblio.librodigital[contador4].autor=oautor;
@@ -510,6 +525,7 @@ public class Modificar_bibliografia extends JFrame{
                         
                         tamaño=Integer.parseInt(text_tamaño.getText());
                         Administradorbiblio.librodigital[contador4].tamaño=tamaño;
+                    }
                 }
                 dispose();
             }

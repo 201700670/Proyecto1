@@ -175,6 +175,7 @@ public class Agregar extends JFrame {
         int contador,contador2,contador3,contador4;
         String oautor,otitulo,odescripcion,opalabras,otemas,oarea,ocategoria;
         int otipo,oano,oedicion,ocopias,oisbn,obejemplares,tamaño;
+        String oejemplares,obisbn, obano,obedicion;
         boolean probando=true;
         @Override
         public void actionPerformed(ActionEvent ae) {
@@ -210,13 +211,16 @@ public class Agregar extends JFrame {
                 }
             if(ae.getSource()==agregarse){
                         oautor=text_autor.getText();
-                        oano=Integer.parseInt(text_ano.getText());
+                        obano=text_ano.getText();
                         otitulo=text_titulo.getText();
-                        oedicion=Integer.parseInt(text_edicion.getText());
+                        obedicion=text_edicion.getText();
                         opalabras=text_palabras.getText();
                         odescripcion=text_descripcion.getText();
                         otemas=text_temas.getText();
                         tamaño=Integer.parseInt(text_tamaño.getText());
+                        if("".equals(otitulo)){
+                    JOptionPane.showMessageDialog(null,"LLENAR LA CASILLA, INTENTE DE NUEVO","ERROR",JOptionPane.WARNING_MESSAGE);
+                }else{
                         agregados[sumandos]=new agregarlibro(tamaño, oautor, oano, otitulo, oedicion, opalabras, odescripcion, otemas,Integer.parseInt(Biblioteca.usuarioactual));
                         
                         for(int persona1=1;persona1<sumandos;persona1++){
@@ -229,6 +233,7 @@ public class Agregar extends JFrame {
                         sumandos++;
                         System.out.println(sumandos);
                         dispose();
+                }
             }
             if(ae.getSource()==cancel){
                 dispose();

@@ -33,7 +33,7 @@ public class Login extends JFrame{
     
     private JButton logIn;
     private JButton logOut;
-//    private JButton registrarse;
+    private JButton principal;
     
     private ImageIcon imagen;
     
@@ -71,9 +71,9 @@ public class Login extends JFrame{
         logOut.setSize(dim);
         logOut.setBounds(300, 400, 100, 30);
         
-//        registrarse = new JButton("Registrarse");
-//        registrarse.setSize(dim);
-//        registrarse.setBounds(200, 450, 130, 30);
+        principal = new JButton("Principal");
+        principal.setSize(dim);
+        principal.setBounds(200, 450, 130, 30);
         
         pnl = new JPanel();
         pnl.setSize(600, 600);
@@ -92,7 +92,7 @@ public class Login extends JFrame{
         add(_psswd);
         add(logIn);
         add(logOut);
-//        add(registrarse);
+        add(principal);
         add(pnlicon);
         
         setSize(600,550);
@@ -100,7 +100,7 @@ public class Login extends JFrame{
         Acciones manejo=new Acciones();
         logIn.addActionListener(manejo);
         logOut.addActionListener(manejo);
-//        registrarse.addActionListener(manejo);
+        principal.addActionListener(manejo);
     }
     private class Acciones implements ActionListener{
 
@@ -113,10 +113,11 @@ public class Login extends JFrame{
             boolean prueba;
             boolean prueba2;
             boolean prueba3;
-//            if(ae.getSource()==registrarse){
-//                    Usuario obj1=new Usuario();
-////                    obj1.setVisible(true);
-//                }
+            if(ae.getSource()==principal){
+                    Principal obj1=new Principal();
+                    obj1.setVisible(true);
+                    dispose();
+                }
                 if(ae.getSource()==logOut){
                     _user.setText(null);
                     _psswd.setText(null);
@@ -131,7 +132,7 @@ public class Login extends JFrame{
                    AdministradorJF obj= new AdministradorJF();
                    obj.setVisible(true);
                    dispose();
-               }
+               }else{
                
                
                 for(int i=1;i<Administrador.personas1;i++){
@@ -161,7 +162,7 @@ public class Login extends JFrame{
                     }
                 }
             }
-                
+           }    
         }
     }
 }

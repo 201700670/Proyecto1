@@ -115,6 +115,7 @@ public class Tesis extends Bibliografias {
     
     public void devolver(){
         disponibles ++;
+        prestamos --;
     }
 
     

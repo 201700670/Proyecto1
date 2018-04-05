@@ -247,7 +247,7 @@ public class Prestar extends JFrame{
         int contador,contador2,contador3,contador4;
         String oautor,otitulo,odescripcion,opalabras,otemas,oarea,ocategoria;
         int otipo,oano,oedicion,ocopias,oisbn,obejemplares,tamaño;
-        String oejemplares,obisbn;
+        String oejemplares,obisbn, obano,obedicion;
         boolean probando=true;
         @Override
         public void actionPerformed(ActionEvent ae) {
@@ -366,10 +366,11 @@ public class Prestar extends JFrame{
                     
                 }
             if(ae.getSource()==prestarse){
+               
                 oautor=text_autor.getText();
-                        oano=Integer.parseInt(text_ano.getText());
+                        obano=text_ano.getText();
                         otitulo=text_titulo.getText();
-                        oedicion=Integer.parseInt(text_edicion.getText());
+                        obedicion=text_edicion.getText();
                         opalabras=text_palabras.getText();
                         odescripcion=text_descripcion.getText();
                         otemas=text_temas.getText();
@@ -380,9 +381,12 @@ public class Prestar extends JFrame{
                         
                         
                 if("Libro".equals(valorComboBox)){
+                    if("".equals(otitulo)){
+                    JOptionPane.showMessageDialog(null,"LLENAR LA CASILLA, INTENTE DE NUEVO","ERROR",JOptionPane.WARNING_MESSAGE);
+                }else{
                     if(Administradorbiblio.libros[contador].disponibles()>0){
                     Administradorbiblio.libros[contador].prestar();
-                        System.out.println("accionprestar"+(Administradorbiblio.libros[contador].disponibles()));
+                        System.out.println("accionprestar"+(Administradorbiblio.libros[contador].prestamos()));
                     ocopias=Integer.parseInt(text_copias.getText());
                     prestados[restandos]=new prestalibros(oautor,oano, otitulo, oedicion, opalabras, odescripcion, otemas,oisbn, ocopias,Integer.parseInt(Biblioteca.usuarioactual));
                    for(int persona1=1;persona1<restandos;persona1++){
@@ -399,8 +403,12 @@ public class Prestar extends JFrame{
                     else{
                         JOptionPane.showMessageDialog(null,"NO HAY DISPONIBLES POR EL MOMENTO","ERROR",JOptionPane.WARNING_MESSAGE);
                     }
+                    }
                 }
                 if("Revista".equals(valorComboBox)){
+                    if("".equals(otitulo)){
+                    JOptionPane.showMessageDialog(null,"LLENAR LA CASILLA, INTENTE DE NUEVO","ERROR",JOptionPane.WARNING_MESSAGE);
+                }else{
                     if(Administradorbiblio.revistas[contador2].disponibles()>0){
                     Administradorbiblio.revistas[contador2].prestar();
                     ocopias=Integer.parseInt(text_copias.getText());
@@ -418,8 +426,12 @@ public class Prestar extends JFrame{
                     else{
                         JOptionPane.showMessageDialog(null,"NO HAY DISPONIBLES POR EL MOMENTO","ERROR",JOptionPane.WARNING_MESSAGE);
                     }
+                    }
                 }
                 if("Tesis".equals(valorComboBox)){
+                    if("".equals(otitulo)){
+                    JOptionPane.showMessageDialog(null,"LLENAR LA CASILLA, INTENTE DE NUEVO","ERROR",JOptionPane.WARNING_MESSAGE);
+                }else{
                     if(Administradorbiblio.tesis[contador3].disponibles()>0){
                     Administradorbiblio.tesis[contador3].prestar();
                     ocopias=Integer.parseInt(text_copias.getText());
@@ -436,6 +448,7 @@ public class Prestar extends JFrame{
                     }
                     else{
                         JOptionPane.showMessageDialog(null,"NO HAY DISPONIBLES POR EL MOMENTO","ERROR",JOptionPane.WARNING_MESSAGE);
+                    }
                     }
                 }
                         dispose();

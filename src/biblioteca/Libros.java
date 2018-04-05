@@ -36,6 +36,7 @@ public class Libros extends Bibliografias{
     
     public void devolver(){
         disponibles ++;
+        prestamos--;
     }
 
     

@@ -183,6 +183,14 @@ public class AdministradorJF extends JFrame{
                 obj.setVisible(true);
                 dispose();
             }
+            if(ae.getSource()==reportelibro){
+                reportelibro obj= new reportelibro();
+                obj.setVisible(true);
+            }
+            if(ae.getSource()==reporteusuario){
+                reporteusuario obj=new reporteusuario();
+                obj.setVisible(true);
+            }
         }
     }
 }

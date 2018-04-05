@@ -103,6 +103,14 @@ public class Cargamasiva extends JFrame {
                     }
                  }
         }
+                for (Librodigital elemento: Administradorbiblio.librodigital){
+                 if(elemento != null){
+                    if (elemento.tipo == 3){
+                        Librodigital temporal = (Librodigital)elemento;
+                        tmp += temporal.mostrar() + "\n";
+                    }
+                 }
+        }
                  masiva.setText(tmp);
             }
             if(ae.getSource()==cancelar){

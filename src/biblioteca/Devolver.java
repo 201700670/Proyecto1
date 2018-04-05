@@ -5,12 +5,6 @@
  */
 package biblioteca;
 
-import static biblioteca.Prestar.prestados;
-import static biblioteca.Prestar.prestados1;
-import static biblioteca.Prestar.prestados2;
-import static biblioteca.Prestar.restandos;
-import static biblioteca.Prestar.restandos1;
-import static biblioteca.Prestar.restandos2;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -280,7 +274,6 @@ public class Devolver extends JFrame{
                         ocopias=Prestar.prestados[contador].copias;
                         text_copias.setText(String.valueOf(ocopias));
                         probando=false;
-                        i=Administradorbiblio.personas;
                         }
                     }
                      if(probando){
@@ -316,7 +309,6 @@ public class Devolver extends JFrame{
                         obejemplares=Prestar.prestados1[contador2].ejemplares;
                         text_ejemplares.setText(String.valueOf(obejemplares));
                         probando=false;
-                        i=Administradorbiblio.personas;
                         }
                     }
                         if(probando){
@@ -351,7 +343,6 @@ public class Devolver extends JFrame{
                         ocopias=Prestar.prestados2[contador3].copias;
                         text_copias.setText(String.valueOf(ocopias)); 
                         probando=false;
-                        i=Administradorbiblio.personas;
                         }
                     }
                       if(probando){
@@ -366,6 +357,9 @@ public class Devolver extends JFrame{
                         
                         
                 if("Libro".equals(valorComboBox)){
+                    if("".equals(otitulo)){
+                    JOptionPane.showMessageDialog(null,"LLENAR LA CASILLA, INTENTE DE NUEVO","ERROR",JOptionPane.WARNING_MESSAGE);
+                }else{
                     for(int persona=1;persona<Prestar.restandos;persona++){
                        if(String.valueOf(Prestar.prestados[persona].id).equals(String.valueOf(Biblioteca.usuarioactual))){
                                        
@@ -399,9 +393,12 @@ public class Devolver extends JFrame{
                         Prestar.prestados[contador].isbn=oisbn;
                                    }
                     }
+                    }
                 }
                 if("Revista".equals(valorComboBox)){
-                    
+                    if("".equals(otitulo)){
+                    JOptionPane.showMessageDialog(null,"LLENAR LA CASILLA, INTENTE DE NUEVO","ERROR",JOptionPane.WARNING_MESSAGE);
+                }else{
                     Administradorbiblio.revistas[contador2].devolver();
                         text_autor.setText(null);
                         oautor=text_autor.getText();
@@ -433,10 +430,13 @@ public class Devolver extends JFrame{
                         text_ejemplares.setText("0");
                         obejemplares=Integer.parseInt(text_ejemplares.getText());
                         Prestar.prestados1[contador2].ejemplares=obejemplares;
+                    }
                         
                 }
                 if("Tesis".equals(valorComboBox)){
-                    
+                    if("".equals(otitulo)){
+                    JOptionPane.showMessageDialog(null,"LLENAR LA CASILLA, INTENTE DE NUEVO","ERROR",JOptionPane.WARNING_MESSAGE);
+                }else{
                     Administradorbiblio.tesis[contador3].devolver();
                         text_autor.setText(null);
                         oautor=text_autor.getText();
@@ -465,6 +465,7 @@ public class Devolver extends JFrame{
                         text_area.setText(null);
                         oarea=text_area.getText();
                         Prestar.prestados2[contador3].area=oarea;
+                    }
                         
                 }
                       dispose();  

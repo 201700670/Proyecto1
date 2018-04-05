@@ -174,7 +174,7 @@ public class Prestamosgeneral extends JFrame {
         regresar.addActionListener(manejo);
         prestar.addActionListener(manejo);
         ver.addActionListener(manejo);
-        
+        existencias.addActionListener(manejo);
         setSize(800,600);
         setVisible(true);
         
@@ -320,36 +320,37 @@ public class Prestamosgeneral extends JFrame {
                 }
                 ///////////////////////////DATOS DE REVISTA EN BUSQUEDA
                 if("Revistas".equals(valorComboBox1)){
+                    System.out.println("rev");
                     for (int j=1;j<Administradorbiblio.personas2;j++){
                             String[]mosrev={String.valueOf(Administradorbiblio.revistas[j].tipo),Administradorbiblio.revistas[j].autor, String.valueOf(Administradorbiblio.revistas[j].ano), Administradorbiblio.revistas[j].titulo, Administradorbiblio.revistas[j].descripcion, Administradorbiblio.revistas[j].palabras, String.valueOf(Administradorbiblio.revistas[j].edicion),Administradorbiblio.revistas[j].temas,String.valueOf(Administradorbiblio.revistas[j].copias)," ",Administradorbiblio.revistas[j].categoria," ",String.valueOf(Administradorbiblio.revistas[j].ejemplares), " "};
-                            creaciontabla3.addRow(mosrev);
+                            creaciontabla2.addRow(mosrev);
                             add(usumos3);
-                            usumos3.setBounds(55,350,400,200);
-                            usumos3.setSize(570, 150);
-                            JTable tabla=new JTable(creaciontabla3);
+                            usumos2.setBounds(55,350,400,200);
+                            usumos2.setSize(570, 150);
+                            JTable tabla=new JTable(creaciontabla2);
 //                            creaciontabla.fireTableDataChanged();
                             tabla.setSize(600,500);
                             tabla.setPreferredScrollableViewportSize(new Dimension(568, 118));
                             JScrollPane desplazamiento=new JScrollPane(tabla);
-                            usumos3.add(desplazamiento,BorderLayout.SOUTH);
+                            usumos2.add(desplazamiento,BorderLayout.SOUTH);
                             setSize(800,550);
                             setVisible(true);
                     }
                 }
                 ///////////////////////////DATOS DE TESIS EN BUSQUEDA
-                if("Autor".equals(valorComboBox1)||"Año publicado".equals(valorComboBox)||"Título".equals(valorComboBox)||"Edición".equals(valorComboBox)||"Palabras clave".equals(valorComboBox)||"Descripción".equals(valorComboBox)||"Temas".equals(valorComboBox)||"Copias".equals(valorComboBox)||"Categoría".equals(valorComboBox)||"Ejemplares".equals(valorComboBox)){
+                if("Tesis".equals(valorComboBox1)){
                     for (int k=1;k<Administradorbiblio.personas3;k++){
                             String[]moste={String.valueOf(Administradorbiblio.tesis[k].tipo),Administradorbiblio.tesis[k].autor,String.valueOf(Administradorbiblio.tesis[k].ano),Administradorbiblio.tesis[k].titulo, Administradorbiblio.tesis[k].descripcion,Administradorbiblio.tesis[k].palabras,String.valueOf(Administradorbiblio.tesis[k].edicion),Administradorbiblio.tesis[k].temas,String.valueOf(Administradorbiblio.tesis[k].copias),Administradorbiblio.tesis[k].area," "," "," ", " "};
-                            creaciontabla4.addRow(moste);
-                            add(usumos4);
-                            usumos4.setBounds(55,350,400,200);
-                            usumos4.setSize(570, 150);
-                            JTable tabla=new JTable(creaciontabla4);
+                            creaciontabla2.addRow(moste);
+                            add(usumos2);
+                            usumos2.setBounds(55,350,400,200);
+                            usumos2.setSize(570, 150);
+                            JTable tabla=new JTable(creaciontabla2);
 //                            creaciontabla.fireTableDataChanged();
                             tabla.setSize(600,500);
                             tabla.setPreferredScrollableViewportSize(new Dimension(568, 118));
                             JScrollPane desplazamiento=new JScrollPane(tabla);
-                            usumos4.add(desplazamiento,BorderLayout.SOUTH);
+                            usumos2.add(desplazamiento,BorderLayout.SOUTH);
                             setSize(800,550);
                             setVisible(true);
                 }
@@ -376,7 +377,10 @@ public class Prestamosgeneral extends JFrame {
                 obj.setVisible(true);
                 dispose();
             }
-            
+            if(ae.getSource()==existencias){
+                existencias obj=new existencias();
+                obj.setVisible(true);
+            }
         }
     }
 }

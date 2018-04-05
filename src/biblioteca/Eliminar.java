@@ -207,6 +207,9 @@ public class Eliminar extends JFrame{
                     
             }
             if(ae.getSource()==eliminarse){
+                if("".equals(otitulo)){
+                    JOptionPane.showMessageDialog(null,"LLENAR LA CASILLA, INTENTE DE NUEVO","ERROR",JOptionPane.WARNING_MESSAGE);
+                }else{
                         text_autor.setText(null);
                         oautor=text_autor.getText();
                         Agregar.agregados[contador4].autor=oautor;
@@ -232,6 +235,7 @@ public class Eliminar extends JFrame{
                         tamaño=Integer.parseInt(text_tamaño.getText());
                         Agregar.agregados[contador4].tamaño=tamaño;
                         dispose();
+                }
             }
             if(ae.getSource()==cancel){
                 dispose();
